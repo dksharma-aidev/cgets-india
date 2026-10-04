@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CGETS India – Clean & Green Energy Simulator</title>
+<meta name="description" content="Interactive simulator and dashboard for India's Clean & Green Energy Technology Stack.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><strong>CGETS India</strong><span>Clean & Green Energy Simulator</span></div>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav" aria-label="Views">
+    <a href="#overview" data-view="overview">Overview</a>
+    <a href="#l1" data-view="l1">L1 Generation</a>
+    <a href="#l2" data-view="l2">L2 Conversion & Storage</a>
+    <a href="#l34" data-view="l34">L3 + L4 Grid & End-use</a>
+    <a href="#calc" data-view="calc">Calculators</a>
+    <a href="#evidence" data-view="evidence">Evidence</a>
+    <a href="#assumptions" data-view="assumptions">Assumptions</a>
+  </nav>
+</header>
+
+<section class="kpis" aria-label="Key indicators">
+  <div class="kpi"><span class="k-val" id="kpi-share">–</span><span class="k-lab">Non-fossil share</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-gap">–</span><span class="k-lab">Gap to 500 GW</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-co2">–</span><span class="k-lab">CO₂ avoided</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-fossil">–</span><span class="k-lab">Fossil gap</span></div>
+</section>
+
+<main>
+  <section class="view" id="overview">
+    <h1>One stack, four layers</h1>
+    <p class="lead">Move from generation to end-use and see where India's clean-energy transition holds or breaks.</p>
+    <ol class="stack">
+      <li class="s4"><b>L4 End-use</b> EVs, e-cooking, electric buses, green data centres</li>
+      <li class="s3"><b>L3 Grid intelligence</b> AMI, SCADA, AI forecasting, V2G</li>
+      <li class="s2"><b>L2 Conversion & storage</b> BESS, pumped hydro, green hydrogen</li>
+      <li class="s1"><b>L1 Generation</b> Solar, wind, hydro, biomass, ocean</li>
+    </ol>
+    <div class="ph">Scenario presets go here (Day 3)</div>
+  </section>
+
+  <section class="view" id="l1"><h1>L1 Generation</h1>
+    <div class="ph">Capacity sliders and annual generation (Day 2–3)</div>
+    <div class="ph tall" id="chart-l1">Capacity chart</div>
+    <div class="ph tall" id="map-l1">India map (Leaflet)</div></section>
+
+  <section class="view" id="l2"><h1>L2 Conversion & Storage</h1>
+    <div class="ph">BESS and pumped-hydro sliders, storage toggle</div>
+    <div class="ph tall" id="chart-l2">24-hour dispatch chart</div></section>
+
+  <section class="view" id="l34"><h1>L3 + L4 Grid Intelligence & End-use</h1>
+    <div class="ph">AMI, forecast error, V2G controls</div>
+    <div class="ph tall" id="chart-l4">EV sales donut, e-cooking</div></section>
+
+  <section class="view" id="calc"><h1>Calculators</h1>
+    <div class="ph">Rooftop solar, V2G, storage firming</div></section>
+
+  <section class="view" id="evidence"><h1>Evidence</h1>
+    <div class="ph">Social-media screenshots with verification tags</div></section>
+
+  <section class="view" id="assumptions"><h1>Assumptions & data</h1>
+    <p class="lead">Every figure in the app comes from <code>data.json</code>. Each one carries a source and a verification tag.</p>
+    <div class="filters" id="filters"></div>
+    <div class="table-wrap"><table id="dataTable">
+      <thead><tr><th>Figure</th><th>Value</th><th>Year</th><th>Source</th><th>Status</th></tr></thead>
+      <tbody></tbody></table></div>
+    <div id="dataError" class="err" hidden></div>
+  </section>
+</main>
+
+<footer>CHE110 · VA05 Modern Technologies for Clean and Green Energy Development in India · Open source, no tracking.</footer>
+<script src="app.js"></script>
+</body>
+</html>

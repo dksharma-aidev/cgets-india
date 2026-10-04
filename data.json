@@ -1,0 +1,338 @@
+{
+ "meta": {
+  "project": "CGETS India",
+  "course": "CHE110 / VA05",
+  "updated": "2026-10-04",
+  "status_tags": {
+   "verified": "Checked against a primary or official source",
+   "unconfirmed": "Taken from the report; primary source not yet found",
+   "illustrative": "Placeholder or modelling assumption, not a measured figure"
+  }
+ },
+ "figures": [
+  {
+   "id": "nonfossil_share",
+   "label": "Non-fossil share of installed capacity (milestone)",
+   "value": 50,
+   "unit": "%",
+   "year": "June 2025",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "solar_pv_capacity",
+   "label": "Solar PV installed capacity",
+   "value": 129,
+   "unit": "GW",
+   "year": "2025",
+   "source": "MNRE / PIB",
+   "status": "verified"
+  },
+  {
+   "id": "solar_pv_added",
+   "label": "Solar PV capacity added in 2025-26",
+   "value": 24.5,
+   "unit": "GW",
+   "year": "2025-26",
+   "source": "MNRE / PIB",
+   "status": "verified"
+  },
+  {
+   "id": "wind_capacity",
+   "label": "Wind installed capacity",
+   "value": 58.14,
+   "unit": "GW",
+   "year": "2025-26",
+   "source": "MNRE / PIB",
+   "status": "verified"
+  },
+  {
+   "id": "wind_added",
+   "label": "Wind capacity added in 2025-26",
+   "value": 6.05,
+   "unit": "GW",
+   "year": "2025-26",
+   "source": "MNRE / PIB",
+   "status": "verified"
+  },
+  {
+   "id": "floating_solar_commissioned",
+   "label": "Floating solar commissioned, Omkareshwar",
+   "value": 278,
+   "unit": "MW",
+   "year": "2025",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "floating_solar_plan",
+   "label": "Floating solar planned, Omkareshwar",
+   "value": 600,
+   "unit": "MW",
+   "year": "2025",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "agrivoltaic_pilot",
+   "label": "Agrivoltaics pilot, Marathwada",
+   "value": 1.4,
+   "unit": "MW",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "biomass_capacity",
+   "label": "Biomass / bagasse capacity",
+   "value": 10.2,
+   "unit": "GW",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "tidal_potential",
+   "label": "Tidal theoretical potential",
+   "value": 12455,
+   "unit": "MW",
+   "year": "n/a",
+   "source": "Report source",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "wave_potential",
+   "label": "Wave theoretical potential",
+   "value": "40,000–60,000",
+   "unit": "MW",
+   "year": "n/a",
+   "source": "Report source",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "wave_gulf_kutch_coast",
+   "label": "Gulf of Kutch coastline relevant to wave",
+   "value": 750,
+   "unit": "km",
+   "year": "n/a",
+   "source": "Report source",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "bhadla_park",
+   "label": "Bhadla solar park",
+   "value": 2245,
+   "unit": "MW",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "pavagada_park",
+   "label": "Pavagada solar park",
+   "value": 2050,
+   "unit": "MW",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "surya_ghar_systems",
+   "label": "PM Surya Ghar rooftop systems installed",
+   "value": 2085000,
+   "unit": "systems",
+   "year": "2025",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "surya_ghar_households",
+   "label": "PM Surya Ghar households covered",
+   "value": 2614000,
+   "unit": "households",
+   "year": "2025",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "bess_pli_target",
+   "label": "ACC PLI battery manufacturing target",
+   "value": 50,
+   "unit": "GWh",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "bess_commissioned",
+   "label": "ACC manufacturing commissioned",
+   "value": 1.4,
+   "unit": "GWh",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "bess_outlook_power",
+   "label": "BESS deployment outlook by 2032",
+   "value": 47,
+   "unit": "GW",
+   "year": "2032",
+   "source": "CEA NEP-2023",
+   "status": "verified"
+  },
+  {
+   "id": "bess_outlook_energy",
+   "label": "BESS deployment outlook by 2032",
+   "value": 236,
+   "unit": "GWh",
+   "year": "2032",
+   "source": "CEA NEP-2023",
+   "status": "verified"
+  },
+  {
+   "id": "psh_operational",
+   "label": "Pumped-storage hydro operational",
+   "value": 4.7,
+   "unit": "GW",
+   "year": "2025",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "nghm_outlay",
+   "label": "National Green Hydrogen Mission outlay",
+   "value": 19744,
+   "unit": "INR crore",
+   "year": "2023",
+   "source": "MNRE",
+   "status": "verified"
+  },
+  {
+   "id": "acc_pli_outlay",
+   "label": "ACC PLI outlay",
+   "value": 18100,
+   "unit": "INR crore",
+   "year": "2021",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "v2g_pilot_power",
+   "label": "V2G pilot target (ISGF / Tata Power Delhi)",
+   "value": 5,
+   "unit": "MW",
+   "year": "2030",
+   "source": "ISGF",
+   "status": "verified"
+  },
+  {
+   "id": "v2g_pilot_evs",
+   "label": "EVs in V2G pilot target",
+   "value": 1000,
+   "unit": "EVs",
+   "year": "2030",
+   "source": "ISGF",
+   "status": "verified"
+  },
+  {
+   "id": "ev_sales_fy25",
+   "label": "EV sales FY25",
+   "value": 2037831,
+   "unit": "units",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "ev_share_2w",
+   "label": "EV sales share: two-wheelers",
+   "value": 59.4,
+   "unit": "%",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "ev_share_lmd",
+   "label": "EV sales share: last-mile delivery (LMD)",
+   "value": 17.5,
+   "unit": "%",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "ev_share_3w",
+   "label": "EV sales share: three-wheelers",
+   "value": 14.6,
+   "unit": "%",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "ev_share_4w",
+   "label": "EV sales share: four-wheelers",
+   "value": 8.3,
+   "unit": "%",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "ev_share_bus",
+   "label": "EV sales share: buses",
+   "value": 0.2,
+   "unit": "%",
+   "year": "FY25",
+   "source": "EVreporter",
+   "status": "verified"
+  },
+  {
+   "id": "per_capita_kwh",
+   "label": "Per-capita electricity consumption",
+   "value": 1460,
+   "unit": "kWh",
+   "year": "FY 2024-25",
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "perovskite_tandem_record",
+   "label": "Perovskite-silicon tandem cell efficiency record (LONGi)",
+   "value": 34.85,
+   "unit": "%",
+   "year": "April 2025",
+   "source": "LONGi",
+   "status": "verified"
+  },
+  {
+   "id": "target_nonfossil_2030",
+   "label": "Non-fossil capacity target",
+   "value": 500,
+   "unit": "GW",
+   "year": "2030",
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "target_net_zero",
+   "label": "Net-zero target year",
+   "value": 2070,
+   "unit": "year",
+   "year": "2070",
+   "source": "BBC / PIB",
+   "status": "verified"
+  },
+  {
+   "id": "target_green_h2",
+   "label": "Green hydrogen production ambition",
+   "value": 5,
+   "unit": "MTPA",
+   "year": "2030",
+   "source": "MNRE",
+   "status": "verified"
+  }
+ ]
+}
