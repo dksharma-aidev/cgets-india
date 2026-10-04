@@ -9,6 +9,7 @@ function show(id){
   document.getElementById("nav").classList.remove("open");
   document.getElementById("menuBtn").setAttribute("aria-expanded","false");
   window.scrollTo(0,0);
+  if(id === "l1" && window.L1) L1.onShow();
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 document.getElementById("menuBtn").addEventListener("click", e => {
@@ -59,6 +60,8 @@ async function init(){
     if(!r.ok) throw new Error(r.status);
     DATA = await r.json();
     renderKPIs(); renderFilters(); renderTable();
+    L1.init(DATA);
+    if(location.hash === "#l1") L1.onShow();
   }catch(e){
     const el = document.getElementById("dataError");
     el.hidden = false;

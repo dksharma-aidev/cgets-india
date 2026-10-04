@@ -2,7 +2,7 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-04",
+  "updated": "2026-10-05",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
@@ -333,6 +333,206 @@
    "year": "2030",
    "source": "MNRE",
    "status": "verified"
+  },
+  {
+   "id": "l1_rooftop_gw",
+   "label": "Rooftop solar capacity (L1 default)",
+   "value": 15,
+   "unit": "GW",
+   "year": "2025",
+   "source": "Modelling default, not from report",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_offshore_wind_gw",
+   "label": "Offshore wind capacity (L1 default)",
+   "value": 0,
+   "unit": "GW",
+   "year": "2025",
+   "source": "Modelling default, none installed",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_hydro_gw",
+   "label": "Hydro capacity (L1 default)",
+   "value": 47,
+   "unit": "GW",
+   "year": "2025",
+   "source": "Modelling default, not from report",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_solar_utility",
+   "label": "Utility-scale solar PV capacity factor (default)",
+   "value": 22,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_rooftop",
+   "label": "Rooftop solar capacity factor (default)",
+   "value": 18,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_floating",
+   "label": "Floating solar capacity factor (default)",
+   "value": 20,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_agri",
+   "label": "Agrivoltaics capacity factor (default)",
+   "value": 18,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_onshore_wind",
+   "label": "Onshore wind capacity factor (default)",
+   "value": 28,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_offshore_wind",
+   "label": "Offshore wind capacity factor (default)",
+   "value": 35,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_hydro",
+   "label": "Hydro capacity factor (default)",
+   "value": 40,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_cf_biomass",
+   "label": "Biomass / bagasse capacity factor (default)",
+   "value": 60,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Typical range for technology; replace with report value if available",
+   "status": "illustrative"
+  },
+  {
+   "id": "l1_grid_emission_factor",
+   "label": "Grid emission factor used for CO2 avoided",
+   "value": 0.7,
+   "unit": "tCO2/MWh",
+   "year": "n/a",
+   "source": "Rounded planning value; check CEA CO2 baseline database",
+   "status": "illustrative"
+  }
+ ],
+ "projects": [
+  {
+   "id": "p_bhadla",
+   "name": "Bhadla Solar Park",
+   "type": "solar",
+   "capacity_mw": 2245,
+   "lat": 27.5395,
+   "lon": 71.9155,
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "p_pavagada",
+   "name": "Pavagada Solar Park",
+   "type": "solar",
+   "capacity_mw": 2050,
+   "lat": 14.1,
+   "lon": 77.2833,
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "p_omkareshwar",
+   "name": "Omkareshwar Floating Solar",
+   "type": "floating",
+   "capacity_mw": 278,
+   "lat": 22.24,
+   "lon": 76.15,
+   "source": "PIB",
+   "status": "verified"
+  },
+  {
+   "id": "p_marathwada",
+   "name": "Marathwada Agrivoltaic Pilot",
+   "type": "agri",
+   "capacity_mw": 1.4,
+   "lat": 19.8762,
+   "lon": 75.3433,
+   "source": "Report source",
+   "status": "verified"
+  },
+  {
+   "id": "h2_odisha",
+   "name": "Green Hydrogen Cluster – Odisha",
+   "type": "h2",
+   "capacity_mw": null,
+   "lat": 20.2961,
+   "lon": 85.8245,
+   "source": "Report source; pin is approximate",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "h2_gujarat",
+   "name": "Green Hydrogen Cluster – Gujarat",
+   "type": "h2",
+   "capacity_mw": null,
+   "lat": 22.2587,
+   "lon": 71.1924,
+   "source": "Report source; pin is approximate",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "h2_karnataka",
+   "name": "Green Hydrogen Cluster – Karnataka",
+   "type": "h2",
+   "capacity_mw": null,
+   "lat": 15.3173,
+   "lon": 75.7139,
+   "source": "Report source; pin is approximate",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "h2_maharashtra",
+   "name": "Green Hydrogen Cluster – Maharashtra",
+   "type": "h2",
+   "capacity_mw": null,
+   "lat": 19.7515,
+   "lon": 75.7139,
+   "source": "Report source; pin is approximate",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "h2_panipat",
+   "name": "Green Hydrogen Cluster – Panipat",
+   "type": "h2",
+   "capacity_mw": null,
+   "lat": 29.3909,
+   "lon": 76.9635,
+   "source": "Report source; pin is approximate",
+   "status": "unconfirmed"
   }
  ]
 }

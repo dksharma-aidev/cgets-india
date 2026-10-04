@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CGETS India – Clean & Green Energy Simulator</title>
 <meta name="description" content="Interactive simulator and dashboard for India's Clean & Green Energy Technology Stack.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,10 +43,27 @@
     <div class="ph">Scenario presets go here (Day 3)</div>
   </section>
 
-  <section class="view" id="l1"><h1>L1 Generation</h1>
-    <div class="ph">Capacity sliders and annual generation (Day 2–3)</div>
-    <div class="ph tall" id="chart-l1">Capacity chart</div>
-    <div class="ph tall" id="map-l1">India map (Leaflet)</div></section>
+  <section class="view" id="l1">
+    <h1>L1 Generation</h1>
+    <p class="lead">Set capacity and capacity factor for each technology. Generation, the gap to 500 GW and the map update as you go.</p>
+    <div class="l1-grid">
+      <div class="l1-controls">
+        <div id="l1Controls"></div>
+        <p class="note">Capacities for floating solar, agrivoltaics, onshore wind, biomass and utility solar come from the report. Rooftop, offshore wind and hydro capacities, and <b>all capacity factors</b>, are illustrative defaults, not report figures.</p>
+        <button type="button" class="btn" id="l1Reset">Reset to defaults</button>
+      </div>
+      <div class="l1-results">
+        <div class="stats">
+          <div class="stat"><span class="k-val" id="l1Total">–</span><span class="k-lab">Installed capacity (GW)</span></div>
+          <div class="stat"><span class="k-val" id="l1Gap">–</span><span class="k-lab" id="l1GapLab">Gap to 500 GW</span></div>
+          <div class="stat"><span class="k-val" id="l1Gen">–</span><span class="k-lab">Annual generation (TWh)</span></div>
+        </div>
+        <div class="chart-box"><canvas id="l1Chart" aria-label="Stacked bar of installed capacity by technology against the 500 GW target" role="img"></canvas></div>
+        <div id="l1Map" role="region" aria-label="Map of India with project pins"></div>
+        <p class="note" id="l1MapNote">Pins for hydrogen clusters are approximate. Map tiles need internet unless already viewed.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="view" id="l2"><h1>L2 Conversion & Storage</h1>
     <div class="ph">BESS and pumped-hydro sliders, storage toggle</div>
@@ -72,6 +90,11 @@
 </main>
 
 <footer>CHE110 · VA05 Modern Technologies for Clean and Green Energy Development in India · Open source, no tracking.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>window.L||document.write('<script src="lib/leaflet.js"><\/script>')</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>window.Chart||document.write('<script src="lib/chart.umd.min.js"><\/script>')</script>
+<script src="l1.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
