@@ -2,12 +2,13 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
    "illustrative": "Placeholder or modelling assumption, not a measured figure"
-  }
+  },
+  "repo_url": ""
  },
  "figures": [
   {
@@ -1094,6 +1095,124 @@
    "name": "[Placeholder] Add the latest policy update",
    "text": "Replace this card with a 2026 policy once you have checked a primary source.",
    "status": "unconfirmed"
+  }
+ ],
+ "evidence": [
+  {
+   "id": "evidence_1",
+   "label": "PIB post on the 50% non-fossil capacity milestone",
+   "file": "S1_pib_nonfossil.png",
+   "platform": "PIB",
+   "date": "2026-10-10",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2250039",
+   "status": "verified",
+   "description": "Official PIB post announcing India's 50% non-fossil installed capacity milestone.",
+   "captured": true,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_2",
+   "label": "MNRE post on PM Surya Ghar rooftop deployment",
+   "file": "S2_mnre_rooftop.png",
+   "platform": "",
+   "date": "",
+   "url": "",
+   "status": "unconfirmed",
+   "description": "MNRE post reporting rooftop solar deployment under PM Surya Ghar.",
+   "captured": false,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_3",
+   "label": "ISGF / Tata Power post on the V2G pilot",
+   "file": "S3_isgf_v2g.png",
+   "platform": "",
+   "date": "",
+   "url": "",
+   "status": "unconfirmed",
+   "description": "Post about the ISGF / Tata Power Delhi vehicle-to-grid pilot.",
+   "captured": false,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_4",
+   "label": "LONGi post on the 34.85% tandem-cell record",
+   "file": "S4_longi_tandem.png",
+   "platform": "",
+   "date": "",
+   "url": "",
+   "status": "unconfirmed",
+   "description": "LONGi post announcing the 34.85% silicon-perovskite tandem cell record.",
+   "captured": false,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_5",
+   "label": "Ammonia Energy Association post on ACME-IHI Odisha",
+   "file": "S5_aea_acme_ihi.png",
+   "platform": "",
+   "date": "",
+   "url": "",
+   "status": "unconfirmed",
+   "description": "Post covering the ACME-IHI Odisha green ammonia project.",
+   "captured": false,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_6",
+   "label": "Official PM Surya Ghar post",
+   "file": "S6_pmsuryaghar_official.png",
+   "platform": "",
+   "date": "",
+   "url": "",
+   "status": "unconfirmed",
+   "description": "Official PM Surya Ghar account post.",
+   "captured": false,
+   "capture_by": "2026-10-10"
+  }
+ ],
+ "engagement": [
+  {
+   "cluster": "#SolarIndia / #RooftopSolar",
+   "views_m": 41.2,
+   "likes_k": 590,
+   "shares_k": 180,
+   "comments_k": 64
+  },
+  {
+   "cluster": "#EVIndia",
+   "views_m": 33.8,
+   "likes_k": 470,
+   "shares_k": 130,
+   "comments_k": 95
+  },
+  {
+   "cluster": "#GreenHydrogen",
+   "views_m": 18.4,
+   "likes_k": 240,
+   "shares_k": 75,
+   "comments_k": 32
+  },
+  {
+   "cluster": "#SmartGrid / #ISGF",
+   "views_m": 7.4,
+   "likes_k": 95,
+   "shares_k": 28,
+   "comments_k": 14
+  },
+  {
+   "cluster": "#GreenAmmonia",
+   "views_m": 5.1,
+   "likes_k": 70,
+   "shares_k": 21,
+   "comments_k": 8
+  },
+  {
+   "cluster": "#AgriPV / #KrishiSolar",
+   "views_m": 2.7,
+   "likes_k": 40,
+   "shares_k": 11,
+   "comments_k": 7
   }
  ]
 }

@@ -36,7 +36,7 @@ const Calc = (() => {
     c3:[{key:"solar", name:"Solar share of installed capacity", unit:"%", min:10, max:50, step:1, id:"calc_firm_solar_pct"},
         {key:"wind",  name:"Wind share of installed capacity",  unit:"%", min:10, max:50, step:1, id:"calc_firm_wind_pct"},
         {key:"target",name:"Target non-fossil share",           unit:"%", min:40, max:90, step:1, id:"calc_firm_target_pct"}]};
-  const COLORS = {c1:"#e0a21b", c2:"#2f6fb0", c3:"#1f8a70"};
+  const COLORS = {c1:"#F59E0B", c2:"#0284C7", c3:"#10B981"};
   let D, S = {}, chart, ready = false;
   const $ = id => document.getElementById(id);
   const fig = id => D.figures.find(f => f.id === id);
@@ -95,7 +95,7 @@ const Calc = (() => {
   function buildChart(){
     if(!window.Chart){ $("c1Chart").parentElement.textContent = "Chart library not loaded. Connect once to the internet or add lib/chart.umd.min.js."; return; }
     chart = new Chart($("c1Chart"), {type:"doughnut",
-      data:{labels:["PM Surya Ghar subsidy","Net cost to household"], datasets:[{data:[0,0], backgroundColor:["#1f8a70","#e0a21b"], borderWidth:1}]},
+      data:{labels:["PM Surya Ghar subsidy","Net cost to household"], datasets:[{data:[0,0], backgroundColor:["#10B981","#F59E0B"], borderWidth:1}]},
       options:{responsive:true, maintainAspectRatio:false, cutout:"55%",
         plugins:{title:{display:true, text:"Capital cost split"}, legend:{position:"right", labels:{boxWidth:12}},
                  tooltip:{callbacks:{label:c => `${c.label}: ₹${f(c.parsed)}`}}}}});

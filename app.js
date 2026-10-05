@@ -8,11 +8,12 @@ function show(id){
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.view === id));
   document.getElementById("nav").classList.remove("open");
   document.getElementById("menuBtn").setAttribute("aria-expanded","false");
-  window.scrollTo(0,0);
+  window.scrollTo({top:0, behavior:"instant"});
   if(id === "l1" && typeof L1 !== "undefined") L1.onShow();
   if(id === "l2" && typeof L2 !== "undefined") L2.onShow();
   if(id === "l34" && typeof L34 !== "undefined") L34.onShow();
   if(id === "calc" && typeof Calc !== "undefined") Calc.onShow();
+  document.getElementById("kpiNote").hidden = !(id === "evidence" || id === "assumptions");   // frozen-state note
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 document.getElementById("menuBtn").addEventListener("click", e => {
@@ -66,7 +67,11 @@ async function init(){
     L1.init(DATA);
     L34.init(DATA);   // must come before L2: L2 reads the L3 settings
     L2.init(DATA);
-    Calc.init(DATA); Assump.init(DATA);
+    Calc.init(DATA); Assump.init(DATA); Evidence.init(DATA);
+    renderOverview(DATA);
+    Share.init(DATA);          // snapshot defaults, then apply any scenario found in the URL
+    paintRanges();
+    if(DATA.meta.repo_url){ const rl = document.getElementById("repoLink"); rl.href = DATA.meta.repo_url; rl.hidden = false; }
     if(location.hash === "#l1") L1.onShow();
     if(location.hash === "#l2") L2.onShow();
   }catch(e){
@@ -78,3 +83,29 @@ async function init(){
     navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 init();
+
+/* ---------- Polish helpers ---------- */
+// Overview preset buttons: apply a preset in L2, then jump to the dispatch view.
+function renderOverview(D){
+  const box = document.getElementById("ovPresets");
+  box.innerHTML = D.presets.map(p => `<button type="button" class="btn" data-preset="${p.id}">${p.label}</button>`).join("");
+  box.addEventListener("click", e => {
+    const b = e.target.closest("[data-preset]"); if(!b) return;
+    L2.applyPresetId(b.dataset.preset); location.hash = "#l2";
+  });
+}
+// Fill the coloured part of every range slider (CSS reads --pct).
+function paintRanges(){
+  document.querySelectorAll("input[type=range]").forEach(r => {
+    const mn = +r.min, mx = +r.max;
+    r.style.setProperty("--pct", (mx > mn ? (r.value - mn) / (mx - mn) * 100 : 0) + "%");
+  });
+}
+["input","click","change"].forEach(ev => document.addEventListener(ev, () => setTimeout(paintRanges, 0)));
+// Keep the sticky KPI row directly under the header, whatever height the header has.
+(function(){
+  const hd = document.querySelector(".top");
+  const set = () => document.documentElement.style.setProperty("--nav-h", hd.offsetHeight + "px");
+  set(); window.addEventListener("resize", set);
+  if(window.ResizeObserver) new ResizeObserver(set).observe(hd);
+})();

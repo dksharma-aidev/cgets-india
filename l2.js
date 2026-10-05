@@ -4,10 +4,10 @@
 const L2 = (() => {
   // id points at the data.json entry that supplies the default value.
   const CTRL = [
-    {key:"bess", name:"BESS capacity",         unit:"GWh", min:0,   max:400, step:0.1, id:"l2_bess_gwh",         color:"#2f6fb0"},
-    {key:"psh",  name:"Pumped-hydro capacity", unit:"GW",  min:0,   max:60,  step:0.1, id:"psh_operational",     color:"#6a5bb5"},
-    {key:"el",   name:"Electrolyser capacity", unit:"GW",  min:0,   max:60,  step:0.5, id:"l2_electrolyser_gw",  color:"#4fb3c8"},
-    {key:"peak", name:"Peak demand",           unit:"GW",  min:150, max:450, step:5,   id:"l2_peak_demand_gw",   color:"#16241f"}
+    {key:"bess", name:"BESS capacity",         unit:"GWh", min:0,   max:400, step:0.1, id:"l2_bess_gwh",         color:"#0284C7"},
+    {key:"psh",  name:"Pumped-hydro capacity", unit:"GW",  min:0,   max:60,  step:0.1, id:"psh_operational",     color:"#6366F1"},
+    {key:"el",   name:"Electrolyser capacity", unit:"GW",  min:0,   max:60,  step:0.5, id:"l2_electrolyser_gw",  color:"#06B6D4"},
+    {key:"peak", name:"Peak demand",           unit:"GW",  min:150, max:450, step:5,   id:"l2_peak_demand_gw",   color:"#0F172A"}
   ];
   let D, chart, bench, ready = false, state = {}, lastRes = null;
   const listeners = [];                     // L3/L4 panel subscribes to results
@@ -69,10 +69,10 @@ const L2 = (() => {
     const labels = Array.from({length:24}, (_, t) => String(t).padStart(2, "0") + ":00");
     const bar = (label, color, key, sign = 1) => ({label, color, key, sign});
     // Above zero: supply + fossil gap. Below zero: where surplus goes. Both sides sum to demand + surplus uses.
-    const spec = [bar("Solar","#e0a21b","solar"), bar("Wind","#1f8a70","wind"), bar("Other non-fossil","#8a9a91","other"),
-      bar("Storage discharge","#2f6fb0","discharge"), bar("Fossil gap","#b3541e","fossil"),
-      bar("Storage charge","#7fb2e0","charge",-1), bar("Electrolyser","#4fb3c8","el",-1), bar("Curtailed","#c9c9c9","curt",-1)];
-    const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#16241f";
+    const spec = [bar("Solar","#F59E0B","solar"), bar("Wind","#10B981","wind"), bar("Other non-fossil","#94A3B8","other"),
+      bar("Storage discharge","#0284C7","discharge"), bar("Fossil gap","#EA580C","fossil"),
+      bar("Storage charge","#7DD3FC","charge",-1), bar("Electrolyser","#06B6D4","el",-1), bar("Curtailed","#CBD5E1","curt",-1)];
+    const ink = "#0F172A";
     chart = new Chart($("l2Chart"), {
       data:{labels, datasets:[
         {type:"line", label:"Demand", data:[], borderColor:ink, backgroundColor:ink, borderWidth:2.5, pointRadius:0, tension:.3, order:0},
@@ -85,8 +85,8 @@ const L2 = (() => {
     bench = new Chart($("l2Bench"), {
       type:"bar",
       data:{labels:["BESS energy (GWh)","BESS power (GW)"], datasets:[
-        {label:"Modelled", data:[0,0], backgroundColor:"#2f6fb0"},
-        {label:"CEA 2032 outlook", data:[val("bess_outlook_energy"), val("bess_outlook_power")], backgroundColor:"#9aa59f"}]},
+        {label:"Modelled", data:[0,0], backgroundColor:"#0284C7"},
+        {label:"CEA 2032 outlook", data:[val("bess_outlook_energy"), val("bess_outlook_power")], backgroundColor:"#94A3B8"}]},
       options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:"bottom", labels:{boxWidth:12}}},
         scales:{y:{beginAtZero:true}}}
     });
@@ -120,6 +120,13 @@ const L2 = (() => {
   }
 
   return {
+    getState: () => ({bess:state.bess, psh:state.psh, el:state.el, peak:state.peak, stor:state.on ? 1 : 0}),
+    setState(o){
+      ["bess","psh","el","peak"].forEach(k => { if(k in o) state[k] = o[k]; });
+      if("stor" in o) state.on = !!o.stor;
+      syncInputs(); update();
+    },
+    applyPresetId(id){ const p = D.presets.find(x => x.id === id); if(p) applyPreset(p); },
     params, refresh: () => update(), last: () => lastRes, onChange(f){ listeners.push(f); },
     init(data){
       D = data; defaults(); buildControls(); syncInputs(); buildCharts();

@@ -4,24 +4,24 @@
    fuel-saving calculators. Every default comes from data.json. */
 const L34 = (() => {
   const L3_SLIDERS = [
-    {key:"ami", name:"AMI / smart-meter coverage", unit:"%", min:0, max:100, step:1, id:"ami_coverage", color:"#6a5bb5"},
-    {key:"err", name:"Forecast error",             unit:"%", min:0, max:20,  step:1, id:"forecast_error", color:"#6a5bb5"}];
+    {key:"ami", name:"AMI / smart-meter coverage", unit:"%", min:0, max:100, step:1, id:"ami_coverage", color:"#6366F1"},
+    {key:"err", name:"Forecast error",             unit:"%", min:0, max:20,  step:1, id:"forecast_error", color:"#6366F1"}];
   const V2G_INPUTS = [
     {key:"evs",   label:"V2G-enabled EVs", id:"v2g_pilot_evs",       step:1000},
     {key:"kwh",   label:"Battery (kWh)",   id:"l3_v2g_battery_kwh",  step:1},
     {key:"avail", label:"Available at peak (%)", id:"l3_v2g_available_pct", step:5},
     {key:"dod",   label:"Depth of discharge (%)", id:"l3_v2g_dod_pct",  step:1}];
   const L4_SLIDERS = [
-    {key:"ecook",  name:"Households with e-cooking", unit:"million", min:0, max:60,     step:0.5, id:"l4_ecooking_hh_m",  color:"#1f8a70"},
-    {key:"ebus",   name:"Electric buses",            unit:"buses",   min:0, max:100000, step:500, id:"l4_ebuses",         color:"#2f6fb0"},
-    {key:"etruck", name:"Electric trucks",           unit:"trucks",  min:0, max:100000, step:500, id:"l4_etrucks",        color:"#4fb3c8"},
-    {key:"h2",     name:"Green hydrogen offtake",    unit:"kt/day",  min:0, max:50,     step:0.1, id:"l4_h2_offtake_ktd", color:"#e0a21b"}];
+    {key:"ecook",  name:"Households with e-cooking", unit:"million", min:0, max:60,     step:0.5, id:"l4_ecooking_hh_m",  color:"#10B981"},
+    {key:"ebus",   name:"Electric buses",            unit:"buses",   min:0, max:100000, step:500, id:"l4_ebuses",         color:"#0284C7"},
+    {key:"etruck", name:"Electric trucks",           unit:"trucks",  min:0, max:100000, step:500, id:"l4_etrucks",        color:"#06B6D4"},
+    {key:"h2",     name:"Green hydrogen offtake",    unit:"kt/day",  min:0, max:50,     step:0.1, id:"l4_h2_offtake_ktd", color:"#F59E0B"}];
   const EV_MIX = [
-    {id:"ev_share_2w",  name:"2-wheelers",        color:"#1f8a70"},
-    {id:"ev_share_lmd", name:"LMD / goods",       color:"#e0a21b"},
-    {id:"ev_share_3w",  name:"3-wheelers",        color:"#2f6fb0"},
-    {id:"ev_share_4w",  name:"Passenger 4-wheelers", color:"#6a5bb5"},
-    {id:"ev_share_bus", name:"Buses",             color:"#b3541e"}];
+    {id:"ev_share_2w",  name:"2-wheelers",        color:"#10B981"},
+    {id:"ev_share_lmd", name:"LMD / goods",       color:"#F59E0B"},
+    {id:"ev_share_3w",  name:"3-wheelers",        color:"#0284C7"},
+    {id:"ev_share_4w",  name:"Passenger 4-wheelers", color:"#6366F1"},
+    {id:"ev_share_bus", name:"Buses",             color:"#EA580C"}];
   let D, donut, ready = false, s = {}, mix = [], lastRes = null;
   const $ = id => document.getElementById(id);
   const fig = id => D.figures.find(f => f.id === id);
@@ -146,6 +146,16 @@ const L34 = (() => {
   return {
     get ready(){ return ready; },
     getParams,
+    getState: () => ({ami:s.ami, err:s.err, v2g:s.v2gOn ? 1 : 0, evs:s.evs, kwh:s.kwh, avail:s.avail, dod:s.dod,
+                      ecook:s.ecook, ebus:s.ebus, etruck:s.etruck, h2:s.h2}),
+    setState(o){
+      ["ami","err","evs","kwh","avail","dod","ecook","ebus","etruck","h2"].forEach(k => { if(k in o) s[k] = o[k]; });
+      if("v2g" in o) s.v2gOn = !!o.v2g;
+      [...L3_SLIDERS, ...L4_SLIDERS].forEach(c => { $("r-"+c.key).value = $("n-"+c.key).value = s[c.key]; });
+      V2G_INPUTS.forEach(c => { $("v-"+c.key).value = s[c.key]; });
+      $("l3V2g").checked = s.v2gOn;
+      L2.refresh();
+    },
     init(data){
       D = data; defaults(); build(); buildDonut(); drawDonut();
       L2.onChange(render);                    // every L2 result also refreshes L3 and L4 outputs

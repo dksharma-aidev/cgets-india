@@ -5,16 +5,16 @@ const L1 = (() => {
   const HOURS = 8760;                       // hours per year
   // capId / cfId point at data.json entries. scale converts the stored unit to GW (MW -> 0.001).
   const TECHS = [
-    {key:"solar_utility", name:"Utility-scale solar PV", color:"#e0a21b", max:500, step:1,      capId:"solar_pv_capacity",           scale:1,     cfId:"l1_cf_solar_utility"},
-    {key:"rooftop",       name:"Rooftop solar",          color:"#f0c75e", max:100, step:0.5,    capId:"l1_rooftop_gw",               scale:1,     cfId:"l1_cf_rooftop"},
-    {key:"floating",      name:"Floating solar",         color:"#2f6fb0", max:20,  step:0.001,  capId:"floating_solar_commissioned", scale:0.001, cfId:"l1_cf_floating"},
-    {key:"agri",          name:"Agrivoltaics",           color:"#7aa63a", max:5,   step:0.0001, capId:"agrivoltaic_pilot",           scale:0.001, cfId:"l1_cf_agri"},
-    {key:"onshore_wind",  name:"Onshore wind",           color:"#1f8a70", max:250, step:0.5,    capId:"wind_capacity",               scale:1,     cfId:"l1_cf_onshore_wind"},
-    {key:"offshore_wind", name:"Offshore wind",          color:"#4fb3c8", max:100, step:0.5,    capId:"l1_offshore_wind_gw",         scale:1,     cfId:"l1_cf_offshore_wind"},
-    {key:"hydro",         name:"Hydro",                  color:"#6a5bb5", max:100, step:0.5,    capId:"l1_hydro_gw",                 scale:1,     cfId:"l1_cf_hydro"},
-    {key:"biomass",       name:"Biomass / bagasse",      color:"#a0643a", max:30,  step:0.1,    capId:"biomass_capacity",            scale:1,     cfId:"l1_cf_biomass"}
+    {key:"solar_utility", name:"Utility-scale solar PV", color:"#F59E0B", max:500, step:1,      capId:"solar_pv_capacity",           scale:1,     cfId:"l1_cf_solar_utility"},
+    {key:"rooftop",       name:"Rooftop solar",          color:"#FCD34D", max:100, step:0.5,    capId:"l1_rooftop_gw",               scale:1,     cfId:"l1_cf_rooftop"},
+    {key:"floating",      name:"Floating solar",         color:"#0284C7", max:20,  step:0.001,  capId:"floating_solar_commissioned", scale:0.001, cfId:"l1_cf_floating"},
+    {key:"agri",          name:"Agrivoltaics",           color:"#84CC16", max:5,   step:0.0001, capId:"agrivoltaic_pilot",           scale:0.001, cfId:"l1_cf_agri"},
+    {key:"onshore_wind",  name:"Onshore wind",           color:"#10B981", max:250, step:0.5,    capId:"wind_capacity",               scale:1,     cfId:"l1_cf_onshore_wind"},
+    {key:"offshore_wind", name:"Offshore wind",          color:"#06B6D4", max:100, step:0.5,    capId:"l1_offshore_wind_gw",         scale:1,     cfId:"l1_cf_offshore_wind"},
+    {key:"hydro",         name:"Hydro",                  color:"#6366F1", max:100, step:0.5,    capId:"l1_hydro_gw",                 scale:1,     cfId:"l1_cf_hydro"},
+    {key:"biomass",       name:"Biomass / bagasse",      color:"#B45309", max:30,  step:0.1,    capId:"biomass_capacity",            scale:1,     cfId:"l1_cf_biomass"}
   ];
-  const PIN_COLOR = {solar:"#e0a21b", floating:"#2f6fb0", agri:"#7aa63a", h2:"#1f8a70"};
+  const PIN_COLOR = {solar:"#F59E0B", floating:"#0284C7", agri:"#84CC16", h2:"#10B981"};
   const listeners = [];                     // other panels (L2) subscribe to capacity changes
   let D, chart, map, mapReady = false, ready = false;
   const state = {};                         // key -> {cap (GW), cf (%)}
@@ -60,12 +60,9 @@ const L1 = (() => {
 
   function buildChart(){
     if(!window.Chart){ $("l1Chart").parentElement.textContent = "Chart library not loaded. Connect once to the internet or add lib/chart.umd.min.js."; return; }
-    const css = getComputedStyle(document.documentElement);
-    Chart.defaults.color = css.getPropertyValue("--ink").trim() || "#16241f";
-    Chart.defaults.borderColor = css.getPropertyValue("--line").trim() || "#d9ded6";
     const target = fig("target_nonfossil_2030").value;
     const ds = TECHS.map(t => ({label:t.name, data:[0,0], backgroundColor:t.color, stack:"s"}));
-    ds.push({label:`2030 target (${target} GW)`, data:[0,target], backgroundColor:"#9aa59f", stack:"s"});
+    ds.push({label:`2030 target (${target} GW)`, data:[0,target], backgroundColor:"#94A3B8", stack:"s"});
     chart = new Chart($("l1Chart"), {
       type:"bar",
       data:{labels:["Modelled L1 mix","2030 target"], datasets:ds},
@@ -106,7 +103,7 @@ const L1 = (() => {
     const pts = [];
     D.projects.forEach(p => {
       const r = p.capacity_mw ? Math.min(16, 6 + Math.sqrt(p.capacity_mw) / 5) : 7;
-      L.circleMarker([p.lat, p.lon], {radius:r, color:"#16241f", weight:1, fillColor:PIN_COLOR[p.type] || "#888", fillOpacity:.85})
+      L.circleMarker([p.lat, p.lon], {radius:r, color:"#0F172A", weight:1, fillColor:PIN_COLOR[p.type] || "#888", fillOpacity:.85})
         .bindPopup(`<b>${esc(p.name)}</b><br>${p.capacity_mw ? esc(p.capacity_mw.toLocaleString("en-IN")) + " MW" : "Capacity not stated"}<br><small>${esc(p.status)} · ${esc(p.source)}</small>`)
         .addTo(map);
       pts.push([p.lat, p.lon]);
@@ -117,6 +114,16 @@ const L1 = (() => {
 
   return {
     get ready(){ return ready; },
+    // Scenario sharing: flat key/value snapshot of capacities and capacity factors
+    getState(){ const o = {}; TECHS.forEach(t => { o["cap_"+t.key] = state[t.key].cap; o["cf_"+t.key] = state[t.key].cf; }); return o; },
+    setState(o){
+      let changed = false;
+      TECHS.forEach(t => {
+        if(("cap_"+t.key) in o){ state[t.key].cap = o["cap_"+t.key]; changed = true; }
+        if(("cf_"+t.key) in o){ state[t.key].cf = Math.min(100, o["cf_"+t.key]); changed = true; }
+      });
+      if(changed){ syncInputs(); update(); }
+    },
     onChange(f){ listeners.push(f); },
     // Totals used by the L2 dispatch engine
     getTotals(){

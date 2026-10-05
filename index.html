@@ -10,7 +10,7 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand"><strong>CGETS India</strong><span>Clean & Green Energy Simulator</span></div>
+  <div class="brand"><svg width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="CGETS India logo: sun over a leaf"><circle cx="16" cy="16" r="16" fill="#ECFDF5"/><circle cx="21" cy="11" r="4.5" fill="#F59E0B"/><path d="M7 25c0-8 5-13 14-13-1 9-6 14-14 13z" fill="#10B981"/><path d="M8 24c3-4 6-7 10-9" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg><div><strong>CGETS India</strong><span>Clean & Green Energy Simulator</span></div></div>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
   <nav id="nav" aria-label="Views">
     <a href="#overview" data-view="overview">Overview</a>
@@ -23,31 +23,33 @@
   </nav>
 </header>
 
-<section class="kpis" aria-label="Key indicators">
-  <div class="kpi"><span class="k-val" id="kpi-share">–</span><span class="k-lab">Non-fossil share (day)</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-gap">–</span><span class="k-lab">Gap to 500 GW</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-co2">–</span><span class="k-lab">CO₂ avoided</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-fossil">–</span><span class="k-lab">Fossil gap (GWh/day)</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-curt">–</span><span class="k-lab">Curtailment (GWh/day)</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-h2">–</span><span class="k-lab">Green H₂ (kt/day)</span></div>
+<section class="kpis-wrap" aria-label="Key indicators">
+  <div class="kpis"><div class="kpi kpi-1"><span class="k-val" id="kpi-share">–</span><span class="k-lab">Non-fossil share</span></div><div class="kpi kpi-2"><span class="k-val" id="kpi-gap">–</span><span class="k-lab">Gap to 500 GW</span></div><div class="kpi kpi-3"><span class="k-val" id="kpi-co2">–</span><span class="k-lab">CO₂ avoided</span></div><div class="kpi kpi-4"><span class="k-val" id="kpi-fossil">–</span><span class="k-lab">Fossil gap <small>GWh/day</small></span></div><div class="kpi kpi-5"><span class="k-val" id="kpi-curt">–</span><span class="k-lab">Curtailment <small>GWh/day</small></span></div><div class="kpi kpi-6"><span class="k-val" id="kpi-h2">–</span><span class="k-lab">Green H₂ <small>kt/day</small></span></div></div>
+  <p class="kpi-note" id="kpiNote" hidden>Values from last scenario.</p>
 </section>
 
 <main>
   <section class="view" id="overview">
-    <h1>One stack, four layers</h1>
-    <p class="lead">Move from generation to end-use and see where India's clean-energy transition holds or breaks.</p>
-    <ol class="stack">
-      <li class="s4"><b>L4 End-use</b> EVs, e-cooking, electric buses, green data centres</li>
-      <li class="s3"><b>L3 Grid intelligence</b> AMI, SCADA, AI forecasting, V2G</li>
-      <li class="s2"><b>L2 Conversion & storage</b> BESS, pumped hydro, green hydrogen</li>
-      <li class="s1"><b>L1 Generation</b> Solar, wind, hydro, biomass, ocean</li>
-    </ol>
-    <div class="ph">Scenario presets go here (Day 3)</div>
+    <div class="hero">
+      <p class="eyebrow">CHE110 · VA05 · India</p>
+      <h1>India's clean-energy transition, as one working system</h1>
+      <p class="lead">Change an input and watch generation, storage, grid intelligence and end-use respond together. Every number carries a source and a verification tag.</p>
+      <p class="sub-h">Start from a scenario</p>
+      <div class="presets" id="ovPresets"></div>
+      <div class="hero-actions"><a class="btn primary" href="#l2">Open the dispatch simulator</a><a class="btn" href="#assumptions">See the assumptions</a></div>
+    </div>
+    <div class="layers">
+      <a class="layer s1" href="#l1"><small>L1</small><b>Generation</b>Solar, wind, hydro, biomass, ocean</a>
+      <a class="layer s2" href="#l2"><small>L2</small><b>Conversion & storage</b>BESS, pumped hydro, green hydrogen</a>
+      <a class="layer s3" href="#l34"><small>L3</small><b>Grid intelligence</b>AMI, SCADA, AI forecasting, V2G</a>
+      <a class="layer s4" href="#l34"><small>L4</small><b>End-use</b>EVs, e-cooking, electric buses, green data centres</a>
+    </div>
   </section>
 
   <section class="view" id="l1">
     <h1>L1 Generation</h1>
     <p class="lead">Set capacity and capacity factor for each technology. Generation, the gap to 500 GW and the map update as you go.</p>
+    <div class="share-bar"><button type="button" class="btn js-copy">Copy scenario link</button><button type="button" class="btn js-qr">Show QR code</button></div>
     <div class="l1-grid">
       <div class="l1-controls">
         <div id="l1Controls"></div>
@@ -70,6 +72,7 @@
   <section class="view" id="l2">
     <h1>L2 Conversion & Storage</h1>
     <p class="lead">A 24-hour dispatch of solar, wind and other non-fossil power against demand. Storage soaks up the midday surplus and covers the evening peak. Surplus beyond storage goes to hydrogen, then is curtailed.</p>
+    <div class="share-bar"><button type="button" class="btn js-copy">Copy scenario link</button><button type="button" class="btn js-qr">Show QR code</button></div>
     <div class="l1-grid">
       <div class="l1-controls">
         <div class="presets" id="l2Presets"></div>
@@ -99,6 +102,7 @@
     <h1>L3 + L4 Grid Intelligence & End-use</h1>
     <h2 class="sec">L3 Grid intelligence</h2>
     <p class="lead">Smart meters trim the evening peak. Better forecasts cut the fossil backup held in reserve. V2G adds a small flexible battery. Results feed straight into the L2 dispatch.</p>
+    <div class="share-bar"><button type="button" class="btn js-copy">Copy scenario link</button><button type="button" class="btn js-qr">Show QR code</button></div>
     <div class="l1-grid">
       <div class="l1-controls">
         <div id="l3Controls"></div>
@@ -195,8 +199,17 @@
     <ol class="timeline" id="timeline" tabindex="0" aria-label="Policy timeline"></ol>
   </section>
 
-  <section class="view" id="evidence"><h1>Evidence</h1>
-    <div class="ph">Social-media screenshots with verification tags</div></section>
+  <section class="view" id="evidence">
+    <h1>Status of Social Media Coverage — 90-Day Sample</h1>
+    <p class="lead">This view hosts genuine screenshots of social-media posts related to India's clean-energy transition. Each item is labelled with platform, date, URL, and a verification tag (verified or unconfirmed). The sample-based engagement figures below are illustrative and not audited analytics.</p>
+    <div class="ev-grid" id="evGrid"></div>
+    <h2 class="sec">Sample engagement (90 days)</h2>
+    <div class="chart-box short"><canvas id="evChart" role="img" aria-label="Bar chart of approximate views by hashtag cluster"></canvas></div>
+    <div class="table-wrap"><table id="evTable"><thead><tr><th>Cluster</th><th>Approx. views</th><th>Likes</th><th>Shares / RTs</th><th>Comments</th></tr></thead><tbody></tbody></table></div>
+    <ul class="note"><li>Reported in the source document: year-on-year views up 72% for #AgriPV and 55% for #GreenAmmonia.</li>
+    <li>A 1,500-comment sample for #SolarIndia was 64% positive, 23% neutral and 13% negative, with a sampling caveat.</li></ul>
+    <p class="disclaimer">Engagement figures are sample-based and approximate. They are not audited analytics and should not be treated as verified metrics.</p>
+  </section>
 
   <section class="view assump" id="assumptions">
     <h1>Assumptions, formulas and limits</h1>
@@ -259,16 +272,32 @@
   </section>
 </main>
 
-<footer>CHE110 · VA05 Modern Technologies for Clean and Green Energy Development in India · Open source, no tracking.</footer>
+<footer>
+  <p>CGETS India — Interactive Clean & Green Energy Simulator & Dashboard | CHE110 | 2026</p>
+  <p><a href="#assumptions">Assumptions</a><a href="#evidence">Evidence</a><a href="https://github.com/" id="repoLink" hidden>GitHub repository</a></p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="shareModal" aria-labelledby="shareTitle">
+  <h2 id="shareTitle" style="margin-top:0">Share this scenario</h2>
+  <div id="qrBox" role="img" aria-label="QR code for the current scenario link"></div>
+  <p class="note">Scan this QR code to open the same scenario on another device.</p>
+  <div class="share-row"><input type="text" id="shareUrl" readonly aria-label="Scenario link"><button type="button" class="btn primary" id="shareCopy">Copy</button></div>
+  <div class="dlg-actions"><button type="button" class="btn" id="shareClose">Close</button></div>
+</dialog>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>window.L||document.write('<script src="lib/leaflet.js"><\/script>')</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>window.Chart||document.write('<script src="lib/chart.umd.min.js"><\/script>')</script>
+<script src="theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>window.QRCode||document.write('<script src="lib/qrcode.min.js"><\/script>')</script>
 <script src="l1.js"></script>
 <script src="dispatch.js"></script>
 <script src="l2.js"></script>
 <script src="l34.js"></script>
 <script src="calculators.js"></script>
+<script src="evidence.js"></script>
+<script src="share.js"></script>
 <script src="assumptions.js"></script>
 <script src="app.js"></script>
 </body>
