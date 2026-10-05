@@ -12,6 +12,7 @@ function show(id){
   if(id === "l1" && typeof L1 !== "undefined") L1.onShow();
   if(id === "l2" && typeof L2 !== "undefined") L2.onShow();
   if(id === "l34" && typeof L34 !== "undefined") L34.onShow();
+  if(id === "calc" && typeof Calc !== "undefined") Calc.onShow();
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 document.getElementById("menuBtn").addEventListener("click", e => {
@@ -65,6 +66,7 @@ async function init(){
     L1.init(DATA);
     L34.init(DATA);   // must come before L2: L2 reads the L3 settings
     L2.init(DATA);
+    Calc.init(DATA); Assump.init(DATA);
     if(location.hash === "#l1") L1.onShow();
     if(location.hash === "#l2") L2.onShow();
   }catch(e){

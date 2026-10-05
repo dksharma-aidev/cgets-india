@@ -92,3 +92,32 @@ h2.sec:first-of-type{border-top:0;margin-top:.6rem}
 .v2g{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;margin:.4rem 0 .8rem;font-size:.85rem;color:var(--mute)}
 .v2g input,.mix input{width:100%;font:inherit;padding:.25rem .4rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
 .mix{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.5rem;font-size:.8rem;color:var(--mute);margin:.6rem 0}
+
+/* ---- Calculators, timeline, assumptions ---- */
+details.calc{border:1px solid var(--line);border-radius:8px;background:var(--card);margin-bottom:1rem;padding:0 1rem 1rem}
+details.calc summary{cursor:pointer;font:600 1.1rem Georgia,serif;padding:.8rem 0;list-style-position:outside}
+details.calc .tech{background:var(--bg)}
+.stats.two{grid-template-columns:1fr 1fr}
+.stat.big .k-val{font-size:2rem}
+.bench{margin:1rem 0}
+.b-row{display:grid;grid-template-columns:7rem 1fr 6rem;align-items:center;gap:.6rem;font-size:.85rem;margin:.4rem 0}
+.meter{height:14px;background:var(--line);border-radius:7px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--l2);width:0;transition:width .2s}
+.tl-ctl{display:flex;gap:.4rem;margin-bottom:.4rem}
+.timeline{list-style:none;margin:0;padding:1.2rem .3rem 1rem;display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x proximity}
+.timeline li{flex:0 0 230px;border-top:3px solid var(--l2);padding-top:.9rem;position:relative;scroll-snap-align:start}
+.timeline li::before{content:"";position:absolute;top:-8px;left:0;width:13px;height:13px;border-radius:50%;background:var(--l2);border:2px solid var(--bg)}
+.timeline .yr{font:600 1.3rem Georgia,serif}
+.timeline b{display:block;margin:.1rem 0 .2rem}
+.timeline p{margin:.2rem 0 .4rem;font-size:.88rem;color:var(--mute)}
+.eq{padding-left:1.3rem}.eq li{margin-bottom:.5rem}
+.eq code,.assump code{font-size:.9rem;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:.05rem .35rem;word-break:break-word}
+.sub-h{font-weight:600;margin-bottom:.2rem}
+.assump li{margin-bottom:.35rem;max-width:75ch}
+@media(max-width:720px){
+ .timeline{flex-direction:column;overflow:visible;gap:.8rem;padding-left:.8rem;border-left:0}
+ .timeline li{flex:none;border-top:0;border-left:3px solid var(--l2);padding:0 0 0 1rem}
+ .timeline li::before{top:.2rem;left:-9px}
+ .tl-ctl{display:none}
+ .b-row{grid-template-columns:5.5rem 1fr 5rem}
+}

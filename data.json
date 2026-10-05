@@ -2,7 +2,7 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
@@ -756,6 +756,132 @@
    "year": "n/a",
    "source": "Modelling assumption",
    "status": "illustrative"
+  },
+  {
+   "id": "pm_surya_ghar_subsidy_per_kw",
+   "label": "PM Surya Ghar subsidy, first 2 kW",
+   "value": 30000,
+   "unit": "₹/kW",
+   "year": "2024",
+   "source": "MNRE scheme terms; PIB PRID 2081250 (confirm wording before submission)",
+   "status": "verified"
+  },
+  {
+   "id": "pm_surya_ghar_subsidy_third_kw",
+   "label": "PM Surya Ghar subsidy, third kW",
+   "value": 18000,
+   "unit": "₹/kW",
+   "year": "2024",
+   "source": "MNRE scheme terms; PIB PRID 2081250 (confirm wording before submission)",
+   "status": "verified"
+  },
+  {
+   "id": "pm_surya_ghar_subsidy_cap",
+   "label": "PM Surya Ghar subsidy cap per household",
+   "value": 78000,
+   "unit": "₹",
+   "year": "2024",
+   "source": "MNRE scheme terms; PIB PRID 2081250 (confirm wording before submission)",
+   "status": "verified"
+  },
+  {
+   "id": "cea_emission_factor",
+   "label": "Grid emission factor used in rooftop calculator",
+   "value": 0.71,
+   "unit": "kg CO2/kWh",
+   "year": "2024",
+   "source": "Value from the brief. CEA's weighted average for 2023-24 is reported as 0.727 t/MWh in trade press; check the latest CEA CO2 Baseline Database",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "rooftop_cost_per_kw",
+   "label": "Rooftop system cost",
+   "value": 50000,
+   "unit": "₹/kW",
+   "year": "n/a",
+   "source": "Modelling assumption; market prices vary",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_rooftop_kw",
+   "label": "Rooftop calculator: system size (default)",
+   "value": 3,
+   "unit": "kW",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_rooftop_psh",
+   "label": "Rooftop calculator: peak sun hours (default)",
+   "value": 4.5,
+   "unit": "h/day",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_rooftop_pr",
+   "label": "Rooftop calculator: performance ratio (default)",
+   "value": 0.75,
+   "unit": "ratio",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_rooftop_tariff",
+   "label": "Rooftop calculator: consumer tariff (default)",
+   "value": 7,
+   "unit": "₹/kWh",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_firm_solar_pct",
+   "label": "Firming sandbox: solar share of installed capacity (default)",
+   "value": 30,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_firm_wind_pct",
+   "label": "Firming sandbox: wind share of installed capacity (default)",
+   "value": 20,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_firm_target_pct",
+   "label": "Firming sandbox: target non-fossil share (default)",
+   "value": 60,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_firm_ref_gw",
+   "label": "Firming sandbox: reference installed capacity",
+   "value": 500,
+   "unit": "GW",
+   "year": "n/a",
+   "source": "Modelling assumption; scales the linear model",
+   "status": "illustrative"
+  },
+  {
+   "id": "calc_firm_factor",
+   "label": "Firming sandbox: BESS power per unit of variable-renewable capacity",
+   "value": 0.2,
+   "unit": "ratio",
+   "year": "n/a",
+   "source": "Chosen so the default lands in the same order as the CEA outlook; not derived from data",
+   "status": "illustrative"
   }
  ],
  "projects": [
@@ -894,6 +1020,80 @@
    "storage_on": true,
    "source": "BESS from CEA 2032 outlook; 2030 solar and wind so there is surplus to store",
    "status": "illustrative"
+  }
+ ],
+ "timeline": [
+  {
+   "year": 2010,
+   "name": "Jawaharlal Nehru National Solar Mission",
+   "text": "Launched India's national push for grid-connected solar.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2015,
+   "name": "Offshore Wind Policy",
+   "text": "Framework for offshore wind in India's waters, with NIWE as nodal agency.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2019,
+   "name": "PM-KUSUM",
+   "text": "Solar pumps and farm-side solar to cut farmers' energy costs.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2021,
+   "name": "PLI for High-Efficiency Solar PV Modules",
+   "text": "Production-linked incentives for integrated solar module manufacturing.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2021,
+   "name": "PLI for ACC Battery Storage",
+   "text": "Rs. 18,100 crore scheme for advanced chemistry cell manufacturing (50 GWh target).",
+   "status": "verified"
+  },
+  {
+   "year": 2022,
+   "name": "Green Energy Open Access Rules",
+   "text": "Simpler open access for buying renewable power.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2022,
+   "name": "Energy Conservation (Amendment) Act",
+   "text": "Created the legal basis for a carbon market and non-fossil consumption mandates.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2023,
+   "name": "National Green Hydrogen Mission",
+   "text": "Rs. 19,744 crore outlay; 5 MTPA green hydrogen ambition for 2030.",
+   "status": "verified"
+  },
+  {
+   "year": 2023,
+   "name": "Carbon Credit Trading Scheme (CCTS)",
+   "text": "Domestic carbon credit trading framework.",
+   "status": "unconfirmed"
+  },
+  {
+   "year": 2024,
+   "name": "PM Surya Ghar: Muft Bijli Yojana",
+   "text": "Rooftop solar for households with central subsidy up to Rs. 78,000.",
+   "status": "verified"
+  },
+  {
+   "year": 2025,
+   "name": "50% non-fossil capacity milestone",
+   "text": "India reached 50% non-fossil installed capacity in June 2025.",
+   "status": "verified"
+  },
+  {
+   "year": 2026,
+   "name": "[Placeholder] Add the latest policy update",
+   "text": "Replace this card with a 2026 policy once you have checked a primary source.",
+   "status": "unconfirmed"
   }
  ]
 }

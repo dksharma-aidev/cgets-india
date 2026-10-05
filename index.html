@@ -141,19 +141,121 @@
     <p class="note">L4 figures are fuel savings, kept separate from the L2 electricity fossil gap. They do not subtract the extra electricity that EVs, e-cooking and electrolysers draw.</p>
   </section>
 
-  <section class="view" id="calc"><h1>Calculators</h1>
-    <div class="ph">Rooftop solar, V2G, storage firming</div></section>
+  <section class="view" id="calc">
+    <h1>Calculators</h1>
+    <p class="lead">Three independent estimators. Outputs are estimations, not forecasts: they omit degradation, discount rates and detailed site losses.</p>
+
+    <details class="calc" open>
+      <summary>1. Rooftop solar sizing (PM Surya Ghar)</summary>
+      <div class="l1-grid">
+        <div class="l1-controls"><div id="c1Controls"></div></div>
+        <div class="l1-results">
+          <div class="stats"><div class="stat"><span class="k-val" id="c1-annual">–</span><span class="k-lab">Annual units generated (kWh)</span></div><div class="stat"><span class="k-val" id="c1-sub">–</span><span class="k-lab">PM Surya Ghar subsidy (₹)</span></div><div class="stat"><span class="k-val" id="c1-net">–</span><span class="k-lab">Net capital cost (₹)</span></div><div class="stat"><span class="k-val" id="c1-save">–</span><span class="k-lab">Annual bill savings (₹)</span></div><div class="stat"><span class="k-val" id="c1-pay">–</span><span class="k-lab">Simple payback (years)</span></div><div class="stat"><span class="k-val" id="c1-co2">–</span><span class="k-lab">CO₂ avoided per year (kg)</span></div></div>
+          <div class="chart-box short"><canvas id="c1Chart" role="img" aria-label="Subsidy versus net cost"></canvas></div>
+          <p class="note">Subsidy: ₹30,000/kW for the first 2 kW plus ₹18,000 for the third kW, capped at ₹78,000. Savings use a flat tariff; no degradation, discounting, financing or site losses.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="calc" open>
+      <summary>2. V2G potential</summary>
+      <div class="l1-grid">
+        <div class="l1-controls"><div id="c2Controls"></div></div>
+        <div class="l1-results">
+          <div class="stats two">
+            <div class="stat big"><span class="k-val" id="c2-e">–</span><span class="k-lab">Total energy available (MWh)</span></div>
+            <div class="stat big"><span class="k-val" id="c2-p">–</span><span class="k-lab">Available power (MW), spread over the 4 h evening window</span></div>
+          </div>
+          <div class="stat"><span class="k-val" id="c2-pilot">–</span><span class="k-lab">Same fleet at the pilot ratio (MW)</span></div>
+          <p class="note" id="c2Note">ISGF / Tata Power Delhi pilot estimates up to 5 MW from 1,000 V2G-enabled EVs by 2030.</p>
+          <p class="note">The energy formula is EVs × battery × % available × DoD / 1000. Your brief gives the same formula for power, but it yields MWh; power needs a time window. The pilot figure is connected charger power (about 5 kW per EV), so the two are not directly comparable.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="calc" open>
+      <summary>3. Storage firming sandbox</summary>
+      <div class="l1-grid">
+        <div class="l1-controls"><div id="c3Controls"></div></div>
+        <div class="l1-results">
+          <div class="stats two">
+            <div class="stat big"><span class="k-val" id="c3-gw">–</span><span class="k-lab">Indicative BESS requirement (GW)</span></div>
+            <div class="stat big"><span class="k-val" id="c3-gwh">–</span><span class="k-lab">Indicative BESS requirement (GWh, 4 h)</span></div>
+          </div>
+          <div class="bench"><div class="b-row"><span>Modelled GW</span><div class="meter"><i id="m-gw"></i></div><span id="m-gw-t"></span></div>
+            <div class="b-row"><span>Modelled GWh</span><div class="meter"><i id="m-gwh"></i></div><span id="m-gwh-t"></span></div>
+            <p class="note">Bars are shown as a share of the CEA NEP-2023 outlook: ~47 GW / 236 GWh of BESS by 2032.</p></div>
+          <p class="note" id="c3Note"></p>
+        </div>
+      </div>
+    </details>
+
+    <h2 class="sec">Policy timeline, 2010–2026</h2>
+    <div class="tl-ctl"><button type="button" class="btn" id="tlPrev" aria-label="Scroll timeline left">←</button><button type="button" class="btn" id="tlNext" aria-label="Scroll timeline right">→</button></div>
+    <ol class="timeline" id="timeline" tabindex="0" aria-label="Policy timeline"></ol>
+  </section>
 
   <section class="view" id="evidence"><h1>Evidence</h1>
     <div class="ph">Social-media screenshots with verification tags</div></section>
 
-  <section class="view" id="assumptions"><h1>Assumptions & data</h1>
-    <p class="lead">Every figure in the app comes from <code>data.json</code>. Each one carries a source and a verification tag.</p>
+  <section class="view assump" id="assumptions">
+    <h1>Assumptions, formulas and limits</h1>
+    <p class="lead">Everything the app assumes, in one place. Numbers in <b>bold</b> are read live from <code>data.json</code>.</p>
+
+    <h2 class="sec">1. Model type</h2>
+    <p>The dispatch engine is a deterministic, transparent balance model. Given the same inputs it always returns the same outputs.</p>
+
+    <h2 class="sec">2. Core equations</h2>
+    <ol class="eq">
+      <li><code>E = P × CF × 8760</code> annual energy (P in GW, E in GWh)</li>
+      <li><code>R(t) = P_solar × p_solar(t) + P_wind × p_wind(t)</code> hourly renewable output</li>
+      <li><code>R(t) + other(t) + discharge(t) + unserved(t) = D(t) + charge(t) + hydrogen(t) + curtailed(t)</code> hourly energy balance. This version puts unserved energy on the supply side, which is where the engine counts it. The report's Section 3.3 shows it on the demand side; correct that line in the report.</li>
+      <li><code>0 ≤ SoC(t) ≤ S_capacity ;  |charge(t)|, |discharge(t)| ≤ P_max</code> storage limits, with round-trip efficiency applied</li>
+      <li><code>CO₂e avoided = E_clean × EF_grid</code></li>
+    </ol>
+    <p class="sub-h">Other relations used</p>
+    <ul>
+      <li>Effective peak = peak × (1 − 0.0005 × AMI %). Forecast reserve = unserved energy × 0.005 × forecast error %.</li>
+      <li>V2G energy (MWh) = EVs × kWh × available % × DoD / 1000; power = energy over the 4 h window (18:00–21:59).</li>
+      <li>Hydrogen (kt/day) = electrolyser GWh / kWh per kg. Rooftop units = kW × sun hours × 365 × PR.</li>
+    </ul>
+
+    <h2 class="sec">3. Illustrative assumptions (all tagged illustrative)</h2>
+    <ul>
+      <li>Solar profile: capacity × 0.75 × sin(π × (h − 6) / 12) for hours 6 to 18, zero otherwise.</li>
+      <li>Wind profile: capacity × (0.25 + 0.10 × cos(2π × (h − 2) / 24)).</li>
+      <li>Other non-fossil generation: <b data-fig="l2_other_nonfossil_gw">70 GW</b> at <b data-fig="l2_other_nonfossil_cf">55%</b> load factor.</li>
+      <li>Storage round-trip efficiency: <b data-fig="l2_rte">85%</b>.</li>
+      <li>BESS duration: <b data-fig="l2_bess_hours">4 h</b>. Pumped-storage duration: <b data-fig="l2_psh_hours">8 h</b>.</li>
+      <li>Grid emission factor in the dispatch engine: <b data-fig="l2_ef">0.8 tCO2/MWh</b>. Rooftop calculator: <b data-fig="cea_emission_factor">0.71 kg CO2/kWh</b> (unconfirmed).</li>
+      <li>Peak demand: <b data-fig="l2_peak_demand_gw">250 GW</b> by default, with peak about <b data-fig="l2_peak_to_avg">1.2</b> times the average.</li>
+      <li>Demand curve shape: a cosine peaking near 19:30. It is illustrative and not calibrated to any state or day.</li>
+      <li>Grid intelligence: 0.5% peak cut per 10% AMI coverage; 5% extra fossil gap per 10% forecast error.</li>
+      <li>L4 factors (cooking, diesel and hydrogen savings) and the firming sandbox factor are illustrative.</li>
+    </ul>
+
+    <h2 class="sec">4. Data sources and status tags</h2>
+    <p>Every figure carries a source and one tag: <span class="tag verified">verified</span> checked against an official or primary source; <span class="tag unconfirmed">unconfirmed</span> from the report, not yet cross-checked; <span class="tag illustrative">illustrative</span> a modelling assumption.</p>
     <div class="filters" id="filters"></div>
     <div class="table-wrap"><table id="dataTable">
       <thead><tr><th>Figure</th><th>Value</th><th>Year</th><th>Source</th><th>Status</th></tr></thead>
       <tbody></tbody></table></div>
     <div id="dataError" class="err" hidden></div>
+
+    <h2 class="sec">5. Limitations</h2>
+    <ul>
+      <li>The model is not a forecasting tool.</li>
+      <li>It omits transmission limits, seasonal variation, ramp constraints and all cost elements.</li>
+      <li>The calculators omit degradation, discount rates and detailed site losses.</li>
+      <li>Social-media figures are sample-based and approximate.</li>
+      <li>The <b data-fig="l2_bess_gwh">1.4 GWh</b> BESS start value is a placeholder from the PLI manufacturing snapshot, not installed grid storage.</li>
+      <li>L4 results are fuel savings; they do not subtract the extra electricity used by EVs, e-cooking and electrolysers. V2G recharge energy is not modelled separately.</li>
+      <li>The 2026 timeline card is a placeholder until a primary source is added.</li>
+    </ul>
+
+    <h2 class="sec">6. How to read the outputs</h2>
+    <p>Results should be read as transparent scenario illustrations, not as predictions or investment-grade analyses.</p>
+    <p><button type="button" class="btn" id="toTop">Back to top</button></p>
   </section>
 </main>
 
@@ -166,6 +268,8 @@
 <script src="dispatch.js"></script>
 <script src="l2.js"></script>
 <script src="l34.js"></script>
+<script src="calculators.js"></script>
+<script src="assumptions.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
