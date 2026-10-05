@@ -24,10 +24,12 @@
 </header>
 
 <section class="kpis" aria-label="Key indicators">
-  <div class="kpi"><span class="k-val" id="kpi-share">–</span><span class="k-lab">Non-fossil share</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-share">–</span><span class="k-lab">Non-fossil share (day)</span></div>
   <div class="kpi"><span class="k-val" id="kpi-gap">–</span><span class="k-lab">Gap to 500 GW</span></div>
   <div class="kpi"><span class="k-val" id="kpi-co2">–</span><span class="k-lab">CO₂ avoided</span></div>
-  <div class="kpi"><span class="k-val" id="kpi-fossil">–</span><span class="k-lab">Fossil gap</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-fossil">–</span><span class="k-lab">Fossil gap (GWh/day)</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-curt">–</span><span class="k-lab">Curtailment (GWh/day)</span></div>
+  <div class="kpi"><span class="k-val" id="kpi-h2">–</span><span class="k-lab">Green H₂ (kt/day)</span></div>
 </section>
 
 <main>
@@ -65,9 +67,33 @@
     </div>
   </section>
 
-  <section class="view" id="l2"><h1>L2 Conversion & Storage</h1>
-    <div class="ph">BESS and pumped-hydro sliders, storage toggle</div>
-    <div class="ph tall" id="chart-l2">24-hour dispatch chart</div></section>
+  <section class="view" id="l2">
+    <h1>L2 Conversion & Storage</h1>
+    <p class="lead">A 24-hour dispatch of solar, wind and other non-fossil power against demand. Storage soaks up the midday surplus and covers the evening peak. Surplus beyond storage goes to hydrogen, then is curtailed.</p>
+    <div class="l1-grid">
+      <div class="l1-controls">
+        <div class="presets" id="l2Presets"></div>
+        <label class="switch"><input type="checkbox" id="l2Storage" checked> Storage on (BESS + pumped hydro)</label>
+        <p class="note" id="l2FromL1"></p>
+        <div id="l2Controls"></div>
+        <p class="note">Hourly solar, wind and demand shapes, other non-fossil output, efficiency, durations and emission factor are <b>illustrative assumptions</b>. The 1.4 GWh BESS start value is a placeholder. Full list in the Assumptions view.</p>
+      </div>
+      <div class="l1-results">
+        <div class="stats">
+          <div class="stat"><span class="k-val" id="c-share">–</span><span class="k-lab">Non-fossil share of daily energy</span></div>
+          <div class="stat"><span class="k-val" id="c-fossil">–</span><span class="k-lab">Fossil gap (GWh/day)</span></div>
+          <div class="stat"><span class="k-val" id="c-co2">–</span><span class="k-lab">CO₂ avoided (Mt/year)</span></div>
+          <div class="stat"><span class="k-val" id="c-curt">–</span><span class="k-lab">Curtailed (GWh/day)</span></div>
+          <div class="stat"><span class="k-val" id="c-h2">–</span><span class="k-lab">Green H₂ (kt/day)</span></div>
+          <div class="stat"><span class="k-val" id="c-pow">–</span><span class="k-lab">Peak charge / discharge (GW)</span></div>
+        </div>
+        <div class="chart-box tall"><canvas id="l2Chart" role="img" aria-label="24-hour dispatch: supply stacked above zero, charging, hydrogen and curtailment below zero, demand as a line"></canvas></div>
+        <p class="note">Above zero: supply sources and any fossil gap. Below zero: where surplus goes. The line is demand.</p>
+        <div class="chart-box short"><canvas id="l2Bench" role="img" aria-label="Modelled BESS against the CEA 2032 outlook"></canvas></div>
+        <p class="note" id="l2BenchNote"></p>
+      </div>
+    </div>
+  </section>
 
   <section class="view" id="l34"><h1>L3 + L4 Grid Intelligence & End-use</h1>
     <div class="ph">AMI, forecast error, V2G controls</div>
@@ -95,6 +121,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>window.Chart||document.write('<script src="lib/chart.umd.min.js"><\/script>')</script>
 <script src="l1.js"></script>
+<script src="dispatch.js"></script>
+<script src="l2.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

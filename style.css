@@ -15,7 +15,7 @@ nav a:hover{background:var(--line)}
 nav a.on{background:var(--ink);color:var(--bg)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--l2);outline-offset:2px}
 .menu-btn{display:none;margin-left:auto;font:inherit;padding:.35rem .8rem;border:1px solid var(--line);background:none;color:var(--ink);border-radius:6px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:var(--card)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:1px solid var(--line);background:var(--card)}
 .kpi{padding:.8rem 1rem;border-right:1px solid var(--line)}
 .kpi:last-child{border-right:0}
 .k-val{display:block;font:600 1.6rem/1.1 Georgia,serif}
@@ -67,4 +67,20 @@ footer{border-top:1px solid var(--line);padding:1rem;text-align:center;font-size
 .chart-box{position:relative;height:340px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:.6rem;margin-bottom:1rem}
 #l1Map{height:380px;width:100%;border:1px solid var(--line);border-radius:6px;z-index:0}
 @media(max-width:860px){.l1-grid{grid-template-columns:1fr}}
-@media(max-width:480px){.stats{grid-template-columns:1fr}.chart-box{height:300px}#l1Map{height:320px}}
+@media(max-width:480px){.stats{grid-template-columns:1fr 1fr}.chart-box{height:300px}#l1Map{height:320px}}
+
+/* ---- L2 Conversion & Storage ---- */
+.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+.presets .btn{font-size:.85rem;padding:.3rem .7rem}
+.switch{display:flex;align-items:center;gap:.6rem;font-weight:600;margin:.2rem 0 .6rem;cursor:pointer}
+.switch input{width:1.3rem;height:1.3rem;accent-color:var(--l2)}
+.chart-box.tall{height:400px}
+.chart-box.short{height:220px}
+.stat .k-val{font-size:1.35rem}
+@media(max-width:720px){
+ .kpis{grid-template-columns:repeat(3,1fr)}
+ .kpi:nth-child(n){border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+ .kpi:nth-child(3n){border-right:0}
+ .k-val{font-size:1.15rem}
+}
+@media(max-width:480px){.chart-box.tall{height:340px}}

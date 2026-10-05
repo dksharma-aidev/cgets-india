@@ -15,6 +15,7 @@ const L1 = (() => {
     {key:"biomass",       name:"Biomass / bagasse",      color:"#a0643a", max:30,  step:0.1,    capId:"biomass_capacity",            scale:1,     cfId:"l1_cf_biomass"}
   ];
   const PIN_COLOR = {solar:"#e0a21b", floating:"#2f6fb0", agri:"#7aa63a", h2:"#1f8a70"};
+  const listeners = [];                     // other panels (L2) subscribe to capacity changes
   let D, chart, map, mapReady = false, ready = false;
   const state = {};                         // key -> {cap (GW), cf (%)}
 
@@ -93,7 +94,7 @@ const L1 = (() => {
     $("l1Gen").textContent = (totalGWh / 1000).toLocaleString("en-IN", {maximumFractionDigits: 1});
     // KPI header: gap and CO2 avoided (upper bound: all L1 output displaces grid-average fossil power)
     $("kpi-gap").textContent = gap > 0 ? fmtGW(gap) + " GW" : "Met";
-    $("kpi-co2").textContent = (totalGWh * ef / 1000).toLocaleString("en-IN", {maximumFractionDigits: 0}) + " Mt/yr";
+    listeners.forEach(f => f());
   }
 
   function buildMap(){
@@ -116,6 +117,18 @@ const L1 = (() => {
 
   return {
     get ready(){ return ready; },
+    onChange(f){ listeners.push(f); },
+    // Totals used by the L2 dispatch engine
+    getTotals(){
+      const s = k => state[k].cap;
+      return {solar: s("solar_utility") + s("rooftop") + s("floating") + s("agri"), wind: s("onshore_wind") + s("offshore_wind")};
+    },
+    // Used by L2 presets: moves utility solar and onshore wind so the totals match; other technologies are left alone.
+    setTotals(solar, wind){
+      state.solar_utility.cap = Math.max(0, solar - (state.rooftop.cap + state.floating.cap + state.agri.cap));
+      state.onshore_wind.cap  = Math.max(0, wind - state.offshore_wind.cap);
+      syncInputs(); update();
+    },
     init(data){
       D = data; defaults(); buildControls(); syncInputs(); buildChart(); update(); ready = true;
       $("l1Reset").addEventListener("click", () => { defaults(); syncInputs(); update(); });

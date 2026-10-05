@@ -9,7 +9,8 @@ function show(id){
   document.getElementById("nav").classList.remove("open");
   document.getElementById("menuBtn").setAttribute("aria-expanded","false");
   window.scrollTo(0,0);
-  if(id === "l1" && window.L1) L1.onShow();
+  if(id === "l1" && typeof L1 !== "undefined") L1.onShow();
+  if(id === "l2" && typeof L2 !== "undefined") L2.onShow();
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 document.getElementById("menuBtn").addEventListener("click", e => {
@@ -61,7 +62,9 @@ async function init(){
     DATA = await r.json();
     renderKPIs(); renderFilters(); renderTable();
     L1.init(DATA);
+    L2.init(DATA);
     if(location.hash === "#l1") L1.onShow();
+    if(location.hash === "#l2") L2.onShow();
   }catch(e){
     const el = document.getElementById("dataError");
     el.hidden = false;

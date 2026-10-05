@@ -2,7 +2,7 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-05",
+  "updated": "2026-10-06",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
@@ -441,6 +441,105 @@
    "year": "n/a",
    "source": "Rounded planning value; check CEA CO2 baseline database",
    "status": "illustrative"
+  },
+  {
+   "id": "l2_bess_gwh",
+   "label": "BESS energy capacity (L2 starting value)",
+   "value": 1.4,
+   "unit": "GWh",
+   "year": "n/a",
+   "source": "Starting value only. Equals ACC manufacturing commissioned (1.4 GWh), which is not deployed grid BESS",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_electrolyser_gw",
+   "label": "Electrolyser capacity (L2 default)",
+   "value": 0,
+   "unit": "GW",
+   "year": "n/a",
+   "source": "Modelling default",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_peak_demand_gw",
+   "label": "Peak demand",
+   "value": 250,
+   "unit": "GW",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_peak_to_avg",
+   "label": "Demand peak-to-average ratio",
+   "value": 1.2,
+   "unit": "ratio",
+   "year": "n/a",
+   "source": "Modelling assumption; shape is a cosine peaking about 19:30",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_other_nonfossil_gw",
+   "label": "Other non-fossil capacity (nuclear, hydro, biomass etc.)",
+   "value": 70,
+   "unit": "GW",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_other_nonfossil_cf",
+   "label": "Other non-fossil load factor",
+   "value": 55,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_rte",
+   "label": "Storage round-trip efficiency",
+   "value": 85,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_bess_hours",
+   "label": "BESS duration",
+   "value": 4,
+   "unit": "h",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_psh_hours",
+   "label": "Pumped-storage duration",
+   "value": 8,
+   "unit": "h",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_ef",
+   "label": "Grid emission factor used in L2",
+   "value": 0.8,
+   "unit": "tCO2/MWh",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l2_h2_kwh_per_kg",
+   "label": "Electrolyser energy use",
+   "value": 55,
+   "unit": "kWh/kg H2",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
   }
  ],
  "projects": [
@@ -533,6 +632,52 @@
    "lon": 76.9635,
    "source": "Report source; pin is approximate",
    "status": "unconfirmed"
+  }
+ ],
+ "presets": [
+  {
+   "id": "india2025",
+   "label": "India 2025",
+   "solar_gw": 129,
+   "wind_gw": 58.14,
+   "bess_gwh": 1.4,
+   "psh_gw": 4.7,
+   "storage_on": true,
+   "source": "Solar, wind and PSH from verified anchors; BESS is the illustrative start value",
+   "status": "illustrative"
+  },
+  {
+   "id": "target2030",
+   "label": "2030 Target",
+   "solar_gw": 280,
+   "wind_gw": 100,
+   "bess_gwh": 100,
+   "psh_gw": 20,
+   "storage_on": true,
+   "source": "Scenario assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "nostorage",
+   "label": "No-storage counterfactual",
+   "solar_gw": 129,
+   "wind_gw": 58.14,
+   "bess_gwh": 1.4,
+   "psh_gw": 4.7,
+   "storage_on": false,
+   "source": "India 2025 with storage off",
+   "status": "illustrative"
+  },
+  {
+   "id": "heavy",
+   "label": "Storage-heavy",
+   "solar_gw": 280,
+   "wind_gw": 100,
+   "bess_gwh": 236,
+   "psh_gw": 26,
+   "storage_on": true,
+   "source": "BESS from CEA 2032 outlook; 2030 solar and wind so there is surplus to store",
+   "status": "illustrative"
   }
  ]
 }
