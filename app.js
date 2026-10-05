@@ -11,6 +11,7 @@ function show(id){
   window.scrollTo(0,0);
   if(id === "l1" && typeof L1 !== "undefined") L1.onShow();
   if(id === "l2" && typeof L2 !== "undefined") L2.onShow();
+  if(id === "l34" && typeof L34 !== "undefined") L34.onShow();
 }
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 document.getElementById("menuBtn").addEventListener("click", e => {
@@ -62,6 +63,7 @@ async function init(){
     DATA = await r.json();
     renderKPIs(); renderFilters(); renderTable();
     L1.init(DATA);
+    L34.init(DATA);   // must come before L2: L2 reads the L3 settings
     L2.init(DATA);
     if(location.hash === "#l1") L1.onShow();
     if(location.hash === "#l2") L2.onShow();

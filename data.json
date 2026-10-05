@@ -2,7 +2,7 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-06",
+  "updated": "2026-10-07",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
@@ -537,6 +537,222 @@
    "label": "Electrolyser energy use",
    "value": 55,
    "unit": "kWh/kg H2",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "ami_coverage",
+   "label": "AMI / smart-meter coverage (starting value)",
+   "value": 10,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Starting value; not taken from the report",
+   "status": "illustrative"
+  },
+  {
+   "id": "forecast_error",
+   "label": "Demand/renewable forecast error",
+   "value": 10,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_ami_peak_cut_per_10pct",
+   "label": "Peak demand reduction per 10% AMI coverage",
+   "value": 0.5,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_forecast_penalty_per_10pct",
+   "label": "Fossil gap increase per 10% forecast error",
+   "value": 5,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_v2g_battery_kwh",
+   "label": "V2G average battery capacity",
+   "value": 40,
+   "unit": "kWh",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_v2g_available_pct",
+   "label": "V2G vehicles available at peak",
+   "value": 50,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_v2g_dod_pct",
+   "label": "V2G depth of discharge",
+   "value": 20,
+   "unit": "%",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l3_v2g_window_h",
+   "label": "V2G evening discharge window (18:00-21:59)",
+   "value": 4,
+   "unit": "h",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_ecooking_hh_m",
+   "label": "Households with e-cooking",
+   "value": 5,
+   "unit": "million",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_ecooking_co2_t_per_hh",
+   "label": "CO2 avoided per e-cooking household",
+   "value": 1.5,
+   "unit": "t/year",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_lpg_cyl_per_hh",
+   "label": "LPG cylinders avoided per household",
+   "value": 12,
+   "unit": "cylinders/year",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_ebuses",
+   "label": "Electric buses",
+   "value": 10000,
+   "unit": "buses",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_etrucks",
+   "label": "Electric trucks",
+   "value": 5000,
+   "unit": "trucks",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_bus_km",
+   "label": "Annual distance per bus",
+   "value": 30000,
+   "unit": "km/year",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_bus_l_per_km",
+   "label": "Diesel displaced per bus-km",
+   "value": 0.3,
+   "unit": "L/km",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_truck_km",
+   "label": "Annual distance per truck",
+   "value": 50000,
+   "unit": "km/year",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_truck_l_per_km",
+   "label": "Diesel displaced per truck-km",
+   "value": 0.4,
+   "unit": "L/km",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_diesel_kgco2_per_l",
+   "label": "CO2 per litre of diesel",
+   "value": 2.68,
+   "unit": "kg/L",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_h2_offtake_ktd",
+   "label": "Green hydrogen offtake (default)",
+   "value": 0,
+   "unit": "kt/day",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_h2_ng_m3_per_kg",
+   "label": "Natural gas displaced per kg of hydrogen",
+   "value": 3.6,
+   "unit": "m3/kg",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_h2_co2_kg_per_kg",
+   "label": "CO2 avoided per kg of hydrogen replacing grey hydrogen",
+   "value": 9,
+   "unit": "kg/kg",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_diesel_kwh_per_l",
+   "label": "Energy content of diesel",
+   "value": 10,
+   "unit": "kWh/L",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_lpg_kwh_per_cyl",
+   "label": "Energy content of a 14.2 kg LPG cylinder",
+   "value": 180,
+   "unit": "kWh",
+   "year": "n/a",
+   "source": "Modelling assumption",
+   "status": "illustrative"
+  },
+  {
+   "id": "l4_ng_kwh_per_m3",
+   "label": "Energy content of natural gas",
+   "value": 10,
+   "unit": "kWh/m3",
    "year": "n/a",
    "source": "Modelling assumption",
    "status": "illustrative"

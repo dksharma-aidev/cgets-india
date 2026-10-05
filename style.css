@@ -84,3 +84,11 @@ footer{border-top:1px solid var(--line);padding:1rem;text-align:center;font-size
  .k-val{font-size:1.15rem}
 }
 @media(max-width:480px){.chart-box.tall{height:340px}}
+
+/* ---- L3 + L4 ---- */
+h2.sec{font:600 1.25rem/1.2 Georgia,serif;margin:1.8rem 0 .6rem;padding-top:1rem;border-top:1px solid var(--line)}
+h2.sec:first-of-type{border-top:0;margin-top:.6rem}
+.stats.sub{margin-top:1rem}
+.v2g{display:grid;grid-template-columns:1fr 1fr;gap:.5rem .8rem;margin:.4rem 0 .8rem;font-size:.85rem;color:var(--mute)}
+.v2g input,.mix input{width:100%;font:inherit;padding:.25rem .4rem;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+.mix{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.5rem;font-size:.8rem;color:var(--mute);margin:.6rem 0}

@@ -95,9 +95,51 @@
     </div>
   </section>
 
-  <section class="view" id="l34"><h1>L3 + L4 Grid Intelligence & End-use</h1>
-    <div class="ph">AMI, forecast error, V2G controls</div>
-    <div class="ph tall" id="chart-l4">EV sales donut, e-cooking</div></section>
+  <section class="view" id="l34">
+    <h1>L3 + L4 Grid Intelligence & End-use</h1>
+    <h2 class="sec">L3 Grid intelligence</h2>
+    <p class="lead">Smart meters trim the evening peak. Better forecasts cut the fossil backup held in reserve. V2G adds a small flexible battery. Results feed straight into the L2 dispatch.</p>
+    <div class="l1-grid">
+      <div class="l1-controls">
+        <div id="l3Controls"></div>
+        <label class="switch"><input type="checkbox" id="l3V2g"> Vehicle-to-grid (V2G) on</label>
+        <div id="l3V2gInputs"></div>
+        <p class="note">V2G only helps when there is surplus to charge from, so try it with the 2030 preset and millions of vehicles. At the 1,000-vehicle pilot scale the effect is negligible. All L3 values are illustrative.</p>
+      </div>
+      <div class="l1-results">
+        <div class="stats">
+          <div class="stat"><span class="k-val" id="o-peak">–</span><span class="k-lab">Effective peak demand (GW)</span></div>
+          <div class="stat"><span class="k-val" id="o-v2gE">–</span><span class="k-lab">V2G flexible energy (MWh)</span></div>
+          <div class="stat"><span class="k-val" id="o-v2gP">–</span><span class="k-lab">V2G discharge power (MW)</span></div>
+          <div class="stat"><span class="k-val" id="o-cut">–</span><span class="k-lab">Fossil gap cut by AMI + V2G (GWh/day)</span></div>
+          <div class="stat"><span class="k-val" id="o-add">–</span><span class="k-lab">Fossil gap added by forecast error (GWh/day)</span></div>
+        </div>
+        <p class="note" id="l3Note"></p>
+      </div>
+    </div>
+
+    <h2 class="sec">L4 End-use</h2>
+    <div class="l1-grid">
+      <div class="l1-controls">
+        <div class="chart-box"><canvas id="l4Donut" role="img" aria-label="Donut chart of FY25 EV sales mix"></canvas></div>
+        <div class="mix" id="l4Mix"></div>
+        <p class="note" id="l4MixNote"></p>
+      </div>
+      <div class="l1-results">
+        <div id="l4Controls"></div>
+        <p class="note" id="l4H2Note"></p>
+        <button type="button" class="btn" id="l4UseH2">Use L2 hydrogen production</button>
+      </div>
+    </div>
+    <div class="stats sub" id="l4Cards">
+      <div class="stat"><span class="k-val" id="s-co2">–</span><span class="k-lab">L4 CO₂ avoided (Mt/year)</span></div>
+      <div class="stat"><span class="k-val" id="s-diesel">–</span><span class="k-lab">Diesel avoided (million litres/year)</span></div>
+      <div class="stat"><span class="k-val" id="s-lpg">–</span><span class="k-lab">LPG avoided (million cylinders/year)</span></div>
+      <div class="stat"><span class="k-val" id="s-gas">–</span><span class="k-lab">Natural gas avoided (million m³/year)</span></div>
+      <div class="stat"><span class="k-val" id="s-en">–</span><span class="k-lab">Fossil fuel energy displaced (GWh/day, thermal)</span></div>
+    </div>
+    <p class="note">L4 figures are fuel savings, kept separate from the L2 electricity fossil gap. They do not subtract the extra electricity that EVs, e-cooking and electrolysers draw.</p>
+  </section>
 
   <section class="view" id="calc"><h1>Calculators</h1>
     <div class="ph">Rooftop solar, V2G, storage firming</div></section>
@@ -123,6 +165,7 @@
 <script src="l1.js"></script>
 <script src="dispatch.js"></script>
 <script src="l2.js"></script>
+<script src="l34.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -9,7 +9,8 @@ const L2 = (() => {
     {key:"el",   name:"Electrolyser capacity", unit:"GW",  min:0,   max:60,  step:0.5, id:"l2_electrolyser_gw",  color:"#4fb3c8"},
     {key:"peak", name:"Peak demand",           unit:"GW",  min:150, max:450, step:5,   id:"l2_peak_demand_gw",   color:"#16241f"}
   ];
-  let D, chart, bench, ready = false, state = {};
+  let D, chart, bench, ready = false, state = {}, lastRes = null;
+  const listeners = [];                     // L3/L4 panel subscribes to results
   const $ = id => document.getElementById(id);
   const fig = id => D.figures.find(f => f.id === id);
   const val = id => fig(id).value;
@@ -56,7 +57,8 @@ const L2 = (() => {
 
   const params = () => {
     const t = L1.getTotals();
-    return {solarGW:t.solar, windGW:t.wind, otherGW:val("l2_other_nonfossil_gw"), otherCF:val("l2_other_nonfossil_cf") / 100,
+    const l3 = (typeof L34 !== "undefined" && L34.ready) ? L34.getParams() : {};   // AMI, forecast error, V2G
+    return {...l3, solarGW:t.solar, windGW:t.wind, otherGW:val("l2_other_nonfossil_gw"), otherCF:val("l2_other_nonfossil_cf") / 100,
       peakGW:state.peak, peakToAvg:val("l2_peak_to_avg"), bessGWh:state.bess, bessHours:val("l2_bess_hours"),
       pshGW:state.psh, pshHours:val("l2_psh_hours"), storageOn:state.on, rte:val("l2_rte") / 100,
       electrolyserGW:state.el, kWhPerKg:val("l2_h2_kwh_per_kg"), ef:val("l2_ef")};
@@ -68,7 +70,7 @@ const L2 = (() => {
     const bar = (label, color, key, sign = 1) => ({label, color, key, sign});
     // Above zero: supply + fossil gap. Below zero: where surplus goes. Both sides sum to demand + surplus uses.
     const spec = [bar("Solar","#e0a21b","solar"), bar("Wind","#1f8a70","wind"), bar("Other non-fossil","#8a9a91","other"),
-      bar("Storage discharge","#2f6fb0","discharge"), bar("Fossil gap","#b3541e","unserved"),
+      bar("Storage discharge","#2f6fb0","discharge"), bar("Fossil gap","#b3541e","fossil"),
       bar("Storage charge","#7fb2e0","charge",-1), bar("Electrolyser","#4fb3c8","el",-1), bar("Curtailed","#c9c9c9","curt",-1)];
     const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim() || "#16241f";
     chart = new Chart($("l2Chart"), {
@@ -114,9 +116,11 @@ const L2 = (() => {
     const bessMW = state.on ? state.bess : 0, bessP = state.on ? state.bess / val("l2_bess_hours") : 0;
     if(bench){ bench.data.datasets[0].data = [bessMW, bessP]; bench.update("none"); }
     $("l2BenchNote").textContent = `Modelled BESS: ${n1(bessMW)} GWh / ${n1(bessP)} GW (storage ${state.on ? "on" : "off"}). CEA 2032 outlook: ${val("bess_outlook_energy")} GWh / ${val("bess_outlook_power")} GW. Pumped hydro is modelled separately and not shown here.`;
+    lastRes = r; listeners.forEach(f => f(r));
   }
 
   return {
+    params, refresh: () => update(), last: () => lastRes, onChange(f){ listeners.push(f); },
     init(data){
       D = data; defaults(); buildControls(); syncInputs(); buildCharts();
       L1.onChange(update);                    // recalculate whenever L1 capacities change
