@@ -63,7 +63,7 @@
           <div class="stat"><span class="k-val" id="l1Gen">–</span><span class="k-lab">Annual generation (TWh)</span></div>
         </div>
         <div class="chart-box"><canvas id="l1Chart" aria-label="Stacked bar of installed capacity by technology against the 500 GW target" role="img"></canvas></div>
-        <div id="l1Map" role="region" aria-label="Map of India with project pins"></div>
+        <div id="l1MapWrap"><div id="l1Map" role="region" aria-label="Map of India with project pins"></div><ul class="legend" id="l1Legend" aria-label="Map legend"></ul></div>
         <p class="note" id="l1MapNote">Pins for hydrogen clusters are approximate. Map tiles need internet unless already viewed.</p>
       </div>
     </div>
@@ -197,6 +197,13 @@
     <h2 class="sec">Policy timeline, 2010–2026</h2>
     <div class="tl-ctl"><button type="button" class="btn" id="tlPrev" aria-label="Scroll timeline left">←</button><button type="button" class="btn" id="tlNext" aria-label="Scroll timeline right">→</button></div>
     <ol class="timeline" id="timeline" tabindex="0" aria-label="Policy timeline"></ol>
+
+    <h2 class="sec">Technology and programme context</h2>
+    <div class="ctx-grid">
+      <article class="ctx-card" id="ctxDeep"><h3>Deep-tech milestones</h3><div class="ctx-body"></div></article>
+      <article class="ctx-card" id="ctxTest"><h3>Indian test-beds</h3><div class="ctx-body"></div></article>
+      <article class="ctx-card" id="ctxPli"><h3>PLI progress</h3><div class="ctx-body"></div></article>
+    </div>
   </section>
 
   <section class="view" id="evidence">
@@ -297,6 +304,7 @@
 <script src="l34.js"></script>
 <script src="calculators.js"></script>
 <script src="evidence.js"></script>
+<script src="context.js"></script>
 <script src="share.js"></script>
 <script src="assumptions.js"></script>
 <script src="app.js"></script>

@@ -15,6 +15,7 @@ const L1 = (() => {
     {key:"biomass",       name:"Biomass / bagasse",      color:"#B45309", max:30,  step:0.1,    capId:"biomass_capacity",            scale:1,     cfId:"l1_cf_biomass"}
   ];
   const PIN_COLOR = {solar:"#F59E0B", floating:"#0284C7", agri:"#84CC16", h2:"#10B981"};
+  const pins = {};                          // map markers by project id
   const listeners = [];                     // other panels (L2) subscribe to capacity changes
   let D, chart, map, mapReady = false, ready = false;
   const state = {};                         // key -> {cap (GW), cf (%)}
@@ -103,7 +104,7 @@ const L1 = (() => {
     const pts = [];
     D.projects.forEach(p => {
       const r = p.capacity_mw ? Math.min(16, 6 + Math.sqrt(p.capacity_mw) / 5) : 7;
-      L.circleMarker([p.lat, p.lon], {radius:r, color:"#0F172A", weight:1, fillColor:PIN_COLOR[p.type] || "#888", fillOpacity:.85})
+      pins[p.id] = L.circleMarker([p.lat, p.lon], {radius:r, color:"#0F172A", weight:1, fillColor:PIN_COLOR[p.type] || "#888", fillOpacity:.85})
         .bindPopup(`<b>${esc(p.name)}</b><br>${p.capacity_mw ? esc(p.capacity_mw.toLocaleString("en-IN")) + " MW" : "Capacity not stated"}<br><small>${esc(p.status)} · ${esc(p.source)}</small>`)
         .addTo(map);
       pts.push([p.lat, p.lon]);
@@ -137,10 +138,14 @@ const L1 = (() => {
       syncInputs(); update();
     },
     init(data){
-      D = data; defaults(); buildControls(); syncInputs(); buildChart(); update(); ready = true;
+      D = data;
+      const names = {solar:"Solar park", floating:"Floating solar", agri:"Agrivoltaic pilot", h2:"Green hydrogen cluster (approximate)"};
+      $("l1Legend").innerHTML = Object.keys(PIN_COLOR).map(k => `<li><i style="background:${PIN_COLOR[k]}"></i>${names[k]}</li>`).join("");
+      defaults(); buildControls(); syncInputs(); buildChart(); update(); ready = true;
       $("l1Reset").addEventListener("click", () => { defaults(); syncInputs(); update(); });
     },
     // The map needs a visible container, so build it (or resize it) only when the view is shown.
+    openPin(id){ buildMap(); if(pins[id]) pins[id].openPopup(); },      // used by the screenshot script
     onShow(){
       if(!ready) return;
       buildMap();

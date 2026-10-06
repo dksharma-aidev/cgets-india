@@ -67,7 +67,7 @@ async function init(){
     L1.init(DATA);
     L34.init(DATA);   // must come before L2: L2 reads the L3 settings
     L2.init(DATA);
-    Calc.init(DATA); Assump.init(DATA); Evidence.init(DATA);
+    Calc.init(DATA); Assump.init(DATA); Evidence.init(DATA); Context.init(DATA);
     renderOverview(DATA);
     Share.init(DATA);          // snapshot defaults, then apply any scenario found in the URL
     paintRanges();

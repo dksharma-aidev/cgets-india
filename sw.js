@@ -1,6 +1,6 @@
 // Offline cache: shell files are cached on install; anything else (CDN libs) is cached on first use.
-const CACHE = "cgets-v6";
-const SHELL = ["./","index.html","style.css","app.js","l1.js","dispatch.js","l2.js","l34.js","calculators.js","assumptions.js","evidence.js","share.js","theme.js","data.json"];
+const CACHE = "cgets-v7";
+const SHELL = ["./","index.html","style.css","app.js","l1.js","dispatch.js","l2.js","l34.js","calculators.js","assumptions.js","evidence.js","context.js","share.js","theme.js","data.json"];
 self.addEventListener("install", e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())));
 self.addEventListener("activate", e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())));

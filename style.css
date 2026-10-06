@@ -189,3 +189,15 @@ footer a{color:var(--mute);margin:0 .4rem}
 }
 @media(max-width:480px){.stats{grid-template-columns:1fr 1fr}.chart-box,.chart-box.tall{height:320px}#l1Map{height:320px}.layers{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---- Context cards (A7-A9) and map legend ---- */
+.ctx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;align-items:start}
+.ctx-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:1rem 1.1rem}
+.ctx-card h3{margin:0 0 .6rem;font-size:1.05rem}
+.ctx-row{padding:.55rem 0;border-top:1px solid var(--soft);font-size:.88rem}
+.ctx-row:first-child{border-top:0}
+.ctx-row b{display:block}.ctx-row .v{font-size:1.15rem;font-weight:800}.ctx-row small{display:block;color:var(--muted)}
+.legend{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:.6rem 0 0;padding:0;font-size:.82rem;color:var(--mute)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:.35rem;border:1px solid #0F172A}
+@media(max-width:900px){.ctx-grid{grid-template-columns:1fr}}
+.ctx-row .v.todo{font-size:.88rem;font-weight:500;font-style:italic;color:var(--muted)}

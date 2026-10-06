@@ -2,7 +2,7 @@
  "meta": {
   "project": "CGETS India",
   "course": "CHE110 / VA05",
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "status_tags": {
    "verified": "Checked against a primary or official source",
    "unconfirmed": "Taken from the report; primary source not yet found",
@@ -1114,60 +1114,72 @@
    "id": "evidence_2",
    "label": "MNRE post on PM Surya Ghar rooftop deployment",
    "file": "S2_mnre_rooftop.png",
-   "platform": "",
-   "date": "",
-   "url": "",
-   "status": "unconfirmed",
+   "platform": "MNRE",
+   "date": "2026-10-10",
+   "url": "https://mnre.gov.in/en/grid-connected-solar-rooftop-programme/",
+   "status": "verified",
    "description": "MNRE post reporting rooftop solar deployment under PM Surya Ghar.",
-   "captured": false,
+   "captured": true,
    "capture_by": "2026-10-10"
   },
   {
    "id": "evidence_3",
    "label": "ISGF / Tata Power post on the V2G pilot",
    "file": "S3_isgf_v2g.png",
-   "platform": "",
-   "date": "",
-   "url": "",
-   "status": "unconfirmed",
+   "platform": "ISGF",
+   "date": "2026-10-10",
+   "url": "https://www.tatapower-ddl.com/pr-details/199/2705286/tata-power-ddl-and-india-smart-grid-forum-signs-mou-for-vehicle-to-grid-technology-demonstration-project",
+   "status": "verified",
    "description": "Post about the ISGF / Tata Power Delhi vehicle-to-grid pilot.",
-   "captured": false,
+   "captured": true,
    "capture_by": "2026-10-10"
   },
   {
    "id": "evidence_4",
    "label": "LONGi post on the 34.85% tandem-cell record",
    "file": "S4_longi_tandem.png",
-   "platform": "",
-   "date": "",
-   "url": "",
-   "status": "unconfirmed",
+   "platform": "LONGi",
+   "date": "2026-10-10",
+   "url": "https://www.longi.com/en/news/silicon-perovskite-tandem-solar-cells-new-world-efficiency/",
+   "status": "verified",
    "description": "LONGi post announcing the 34.85% silicon-perovskite tandem cell record.",
-   "captured": false,
+   "captured": true,
    "capture_by": "2026-10-10"
   },
   {
    "id": "evidence_5",
    "label": "Ammonia Energy Association post on ACME-IHI Odisha",
    "file": "S5_aea_acme_ihi.png",
-   "platform": "",
-   "date": "",
-   "url": "",
-   "status": "unconfirmed",
+   "platform": "Ammonia Energy Association",
+   "date": "2026-10-10",
+   "url": "https://acme.in/media-news/17",
+   "status": "verified",
    "description": "Post covering the ACME-IHI Odisha green ammonia project.",
-   "captured": false,
+   "captured": true,
    "capture_by": "2026-10-10"
   },
   {
    "id": "evidence_6",
    "label": "Official PM Surya Ghar post",
    "file": "S6_pmsuryaghar_official.png",
-   "platform": "",
-   "date": "",
-   "url": "",
-   "status": "unconfirmed",
+   "platform": "PM Surya Ghar",
+   "date": "2026-10-10",
+   "url": "https://pmsuryaghar.gov.in/#/",
+   "status": "verified",
    "description": "Official PM Surya Ghar account post.",
-   "captured": false,
+   "captured": true,
+   "capture_by": "2026-10-10"
+  },
+  {
+   "id": "evidence_7",
+   "label": "EVreporter FY25 EV sales mix post",
+   "file": "S7_evreporter_ev_sales.png",
+   "platform": "Evreporter",
+   "date": "2026-10-10",
+   "url": "https://evreporter.com/india-sold-2550865-electric-vehicles-across-categories-in-fy-2025-26/",
+   "status": "verified",
+   "description": "EVreporter post on the FY25 EV sales mix by segment.",
+   "captured": true,
    "capture_by": "2026-10-10"
   }
  ],
@@ -1213,6 +1225,162 @@
    "likes_k": 40,
    "shares_k": 11,
    "comments_k": 7
+  }
+ ],
+ "deeptech": [
+  {
+   "name": "Perovskite-silicon tandem cell efficiency record",
+   "fig": "perovskite_tandem_record",
+   "detail": "LONGi, April 2025 (report ref [37])"
+  },
+  {
+   "name": "Large triple-junction perovskite cell record",
+   "value": "Add the figure from ref [42]",
+   "detail": "Reported by Tech-Xplore, 2025",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "Perovskite and tandem research in India",
+   "value": "IIT Bombay NCPRE",
+   "detail": "Report ref [12]",
+   "status": "unconfirmed"
+  }
+ ],
+ "testbeds": [
+  {
+   "name": "IIT Bombay NCPRE",
+   "full": "National Centre for Photovoltaic Research and Education",
+   "area": "Solar PV research",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "IISc CeNSE",
+   "full": "Centre for Nano Science and Engineering",
+   "area": "Nanoscale devices and sensors",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "C-DAC",
+   "full": "Centre for Development of Advanced Computing",
+   "area": "Advanced computing and electronics R&D",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "TPDDL",
+   "full": "Tata Power Delhi Distribution Ltd",
+   "area": "Utility test-bed; site of the ISGF V2G pilot",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "MNRE-NISE",
+   "full": "National Institute of Solar Energy",
+   "area": "Solar testing and certification",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "CSIR-NCL",
+   "full": "National Chemical Laboratory",
+   "area": "Chemistry and materials research",
+   "status": "unconfirmed"
+  }
+ ],
+ "pli": [
+  {
+   "name": "ACC battery storage PLI",
+   "fig": "acc_pli_outlay",
+   "detail": "Outlay"
+  },
+  {
+   "name": "ACC manufacturing commissioned",
+   "fig": "bess_commissioned",
+   "target_fig": "bess_pli_target",
+   "detail": "Progress against the 50 GWh target"
+  },
+  {
+   "name": "High-efficiency solar PV modules PLI",
+   "value": "Add progress figures from MNRE",
+   "detail": "Scheme listed in the report",
+   "status": "unconfirmed"
+  },
+  {
+   "name": "Domestic-content module schemes",
+   "value": "Add progress figures from MNRE",
+   "detail": "Scheme listed in the report",
+   "status": "unconfirmed"
+  }
+ ],
+ "report_screenshots": [
+  {
+   "id": "a1",
+   "label": "Attachment A1 - Four-layer CGETS stack",
+   "file": "A1_CGETS_Stack.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a2",
+   "label": "Attachment A2 - Modelled L1 mix vs 2030 target",
+   "file": "A2_Capacity_Chart.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a3",
+   "label": "Attachment A3 - India map with project pins",
+   "file": "A3_Project_Map.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a4",
+   "label": "Attachment A4 - Storage readiness chart",
+   "file": "A4_Storage_Readiness.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a4b",
+   "label": "Attachment A4b - 24-hour dispatch chart",
+   "file": "A4b_Dispatch_Chart.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a5",
+   "label": "Attachment A5 - V2G calculator",
+   "file": "A5_V2G_Calculator.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a6",
+   "label": "Attachment A6 - EV sales mix donut",
+   "file": "A6_EV_Mix.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a7",
+   "label": "Attachment A7 - Deep-tech milestones",
+   "file": "A7_DeepTech.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a8",
+   "label": "Attachment A8 - Indian test-beds",
+   "file": "A8_TestBeds.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a9",
+   "label": "Attachment A9 - PLI progress",
+   "file": "A9_PLI.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "a10",
+   "label": "Attachment A10 - Policy timeline",
+   "file": "A10_Policy_Timeline.png",
+   "status": "unconfirmed"
+  },
+  {
+   "id": "s1",
+   "label": "Attachment S1 - 90-day engagement sample",
+   "file": "S1_Engagement.png",
+   "status": "unconfirmed"
   }
  ]
 }
